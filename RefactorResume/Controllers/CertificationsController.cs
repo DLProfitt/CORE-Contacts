@@ -16,14 +16,12 @@ namespace RefactorResume.Controllers
             _certificationRepository = certificationRepository;
         }
 
-        // GET: api/Certifications
         [HttpGet]
         public ActionResult<IEnumerable<Certification>> GetAllCertifications()
         {
             return Ok(_certificationRepository.GetAllCertifications());
         }
 
-        // GET: api/Certifications/5
         [HttpGet("{id}")]
         public ActionResult<Certification> GetCertificationById(int id)
         {
@@ -35,7 +33,6 @@ namespace RefactorResume.Controllers
             return Ok(certification);
         }
 
-        // POST: api/Certifications
         [HttpPost]
         public ActionResult<Certification> AddCertification(Certification certification)
         {
@@ -43,7 +40,6 @@ namespace RefactorResume.Controllers
             return CreatedAtAction(nameof(GetCertificationById), new { id = certification.ID }, certification);
         }
 
-        // PUT: api/Certifications/5
         [HttpPut("{id}")]
         public IActionResult UpdateCertification(int id, Certification certification)
         {
@@ -56,7 +52,6 @@ namespace RefactorResume.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Certifications/5
         [HttpDelete("{id}")]
         public IActionResult DeleteCertification(int id)
         {
