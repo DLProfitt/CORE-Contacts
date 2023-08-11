@@ -1,21 +1,16 @@
 ﻿using Microsoft.Data.SqlClient;
+using RefactorResume.Data;
 using RefactorResume.Models;
-using System;
 
 namespace RefactorResume.Repositories
 {
-    public class ObjectiveRepository : IObjectiveRepository
+    public class ObjectiveRepository : BaseRepository, IObjectiveRepository
     {
-        private readonly string _connectionString;
-
-        public ObjectiveRepository(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
+        public ObjectiveRepository(IConfiguration configuration) : base(configuration) { }
 
         public Objective GetObjective(int id)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = Connection)
             {
                 connection.Open();
                 using (var command = new SqlCommand("SELECT ID, SectionID, ObjectiveText FROM objective WHERE ID = @ID", connection))
@@ -40,7 +35,7 @@ namespace RefactorResume.Repositories
 
         public void AddObjective(Objective objective)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = Connection)
             {
                 connection.Open();
                 using (var command = new SqlCommand("INSERT INTO objective (SectionID, ObjectiveText) VALUES (@SectionID, @ObjectiveText)", connection))
@@ -54,7 +49,7 @@ namespace RefactorResume.Repositories
 
         public void UpdateObjective(Objective objective)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = Connection)
             {
                 connection.Open();
                 using (var command = new SqlCommand("UPDATE objective SET SectionID = @SectionID, ObjectiveText = @ObjectiveText WHERE ID = @ID", connection))
@@ -69,7 +64,7 @@ namespace RefactorResume.Repositories
 
         public void DeleteObjective(int id)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = Connection)
             {
                 connection.Open();
                 using (var command = new SqlCommand("DELETE FROM objective WHERE ID = @ID", connection))

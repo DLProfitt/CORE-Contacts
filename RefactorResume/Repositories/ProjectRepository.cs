@@ -8,15 +8,13 @@ namespace RefactorResume.Repositories
 {
     public class ProjectRepository : BaseRepository, IProjectRepository
     {
-        private readonly string _connectionString;
-
         public ProjectRepository(IConfiguration configuration) : base(configuration) { }
 
         public IEnumerable<Project> GetAllProjects()
         {
             var projects = new List<Project>();
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand("SELECT * FROM projects", connection))
@@ -45,7 +43,7 @@ namespace RefactorResume.Repositories
 
         public void AddProject(Project project)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(
@@ -63,7 +61,7 @@ namespace RefactorResume.Repositories
 
         public void UpdateProject(Project project)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(
@@ -82,7 +80,7 @@ namespace RefactorResume.Repositories
 
         public void DeleteProject(int id)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand("DELETE FROM projects WHERE ID = @ID", connection))

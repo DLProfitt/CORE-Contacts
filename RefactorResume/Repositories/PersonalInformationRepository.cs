@@ -7,13 +7,11 @@ namespace RefactorResume.Data
 {
     public class PersonalInformationRepository : BaseRepository, IPersonalInformationRepository
     {
-        private readonly string _connectionString;
-
         public PersonalInformationRepository(IConfiguration configuration) : base(configuration) { }
 
         public PersonalInformation Get(int id)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
 
@@ -45,7 +43,7 @@ namespace RefactorResume.Data
 
         public void Add(PersonalInformation personalInformation)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
 
@@ -68,7 +66,7 @@ namespace RefactorResume.Data
 
         public void Update(PersonalInformation personalInformation)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
 
@@ -92,7 +90,7 @@ namespace RefactorResume.Data
 
         public void Delete(int id)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
 

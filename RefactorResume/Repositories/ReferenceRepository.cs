@@ -1,24 +1,20 @@
 ﻿using Microsoft.Data.SqlClient;
+using RefactorResume.Data;
 using RefactorResume.Models;
 using System;
 using System.Collections.Generic;
 
 namespace RefactorResume.Repositories
 {
-    public class ReferenceRepository : IReferenceRepository
+    public class ReferenceRepository : BaseRepository, IReferenceRepository // Inherit from BaseRepository
     {
-        private readonly string _connectionString;
-
-        public ReferenceRepository(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
+        public ReferenceRepository(IConfiguration configuration) : base(configuration) { }
 
         public List<Reference> GetAllReferences()
         {
             List<Reference> references = new List<Reference>();
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection) // Use Connection property from BaseRepository
             {
                 connection.Open();
 
@@ -48,7 +44,7 @@ namespace RefactorResume.Repositories
 
         public Reference GetReferenceById(int id)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
 
@@ -80,7 +76,7 @@ namespace RefactorResume.Repositories
 
         public void AddReference(Reference reference)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
 
@@ -101,7 +97,7 @@ namespace RefactorResume.Repositories
 
         public void UpdateReference(Reference reference)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
 
@@ -123,7 +119,7 @@ namespace RefactorResume.Repositories
 
         public void DeleteReference(int id)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
 

@@ -7,13 +7,11 @@ namespace RefactorResume.Data
 {
     public class CertificationRepository : BaseRepository, ICertificationRepository
     {
-        private readonly string _connectionString;
-
         public CertificationRepository(IConfiguration configuration) : base(configuration) { }
 
         public List<Certification> GetAllCertifications()
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand("SELECT * FROM certifications", connection))
@@ -39,7 +37,7 @@ namespace RefactorResume.Data
 
         public Certification GetCertificationById(int id)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand("SELECT * FROM certifications WHERE ID = @ID", connection))
@@ -65,7 +63,7 @@ namespace RefactorResume.Data
 
         public void AddCertification(Certification certification)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand("INSERT INTO certifications (SectionID, CertificationTitle, DateReceived) VALUES (@SectionID, @CertificationTitle, @DateReceived)", connection))
@@ -80,7 +78,7 @@ namespace RefactorResume.Data
 
         public void UpdateCertification(Certification certification)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand("UPDATE certifications SET SectionID = @SectionID, CertificationTitle = @CertificationTitle, DateReceived = @DateReceived WHERE ID = @ID", connection))
@@ -96,7 +94,7 @@ namespace RefactorResume.Data
 
         public void DeleteCertification(int id)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand("DELETE FROM certifications WHERE ID = @ID", connection))

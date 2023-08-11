@@ -7,8 +7,6 @@ namespace RefactorResume.Data
 {
     public class ResumeSectionRepository : BaseRepository, IResumeSectionRepository
     {
-        private readonly string _connectionString;
-
         public ResumeSectionRepository(IConfiguration configuration) : base(configuration) { }
 
         public List<ResumeSection> GetAll()
@@ -16,7 +14,7 @@ namespace RefactorResume.Data
             List<ResumeSection> resumeSections = new List<ResumeSection>();
             string query = "SELECT ID, ResumeID, SectionType FROM resume_sections";
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -43,7 +41,7 @@ namespace RefactorResume.Data
             ResumeSection resumeSection = null;
             string query = "SELECT ID, ResumeID, SectionType FROM resume_sections WHERE ID = @ID";
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -70,7 +68,7 @@ namespace RefactorResume.Data
         {
             string query = "INSERT INTO resume_sections (ResumeID, SectionType) VALUES (@ResumeID, @SectionType)";
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -86,7 +84,7 @@ namespace RefactorResume.Data
         {
             string query = "UPDATE resume_sections SET ResumeID = @ResumeID, SectionType = @SectionType WHERE ID = @ID";
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -103,7 +101,7 @@ namespace RefactorResume.Data
         {
             string query = "DELETE FROM resume_sections WHERE ID = @ID";
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(query, connection))

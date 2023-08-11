@@ -22,12 +22,6 @@ namespace RefactorResume.Controllers
             return _userRepository.GetAllUsers();
         }
 
-        [HttpGet]
-        public IEnumerable<User> GetUsers()
-        {
-            return _userRepository.GetUsers();
-        }
-
         // GET: api/Users/5
         [HttpGet("{id}")]
         public ActionResult<User> GetUser(int id)

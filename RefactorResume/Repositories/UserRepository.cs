@@ -7,15 +7,13 @@ namespace RefactorResume.Data
 {
     public class UserRepository : BaseRepository, IUserRepository
     {
-        private readonly string _connectionString;
-
         public UserRepository(IConfiguration configuration) : base(configuration) { }
 
         public List<User> GetAllUsers()
         {
             var users = new List<User>();
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand("SELECT * FROM users", connection))
@@ -29,7 +27,7 @@ namespace RefactorResume.Data
                             FirstName = reader.GetString(1),
                             LastName = reader.GetString(2),
                             Email = reader.GetString(3),
-                            Password = reader.GetString(4) 
+                            Password = reader.GetString(4)
                         });
                     }
                 }
@@ -40,7 +38,7 @@ namespace RefactorResume.Data
 
         public User GetUser(int id)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 string query = "SELECT * FROM users WHERE ID = @ID";
@@ -68,7 +66,7 @@ namespace RefactorResume.Data
 
         public void AddUser(User user)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 string query = "INSERT INTO users (FirstName, LastName, Email, Password) VALUES (@FirstName, @LastName, @Email, @Password)";
@@ -85,7 +83,7 @@ namespace RefactorResume.Data
 
         public void UpdateUser(User user)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 string query = "UPDATE users SET FirstName = @FirstName, LastName = @LastName, Email = @Email, Password = @Password WHERE ID = @ID";
@@ -103,7 +101,7 @@ namespace RefactorResume.Data
 
         public void DeleteUser(int id)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 string query = "DELETE FROM users WHERE ID = @ID";

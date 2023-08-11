@@ -1,24 +1,20 @@
 ﻿using Microsoft.Data.SqlClient;
+using RefactorResume.Data;
 using RefactorResume.Models;
 using System;
 using System.Collections.Generic;
 
 namespace RefactorResume.Repositories
 {
-    public class SkillRepository : ISkillRepository
+    public class SkillRepository : BaseRepository, ISkillRepository
     {
-        private readonly string _connectionString;
-
-        public SkillRepository(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
+        public SkillRepository(IConfiguration configuration) : base(configuration) { }
 
         public List<Skill> GetAllSkills()
         {
             List<Skill> skills = new List<Skill>();
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 string query = "SELECT * FROM skills";
                 SqlCommand command = new SqlCommand(query, connection);
@@ -47,7 +43,7 @@ namespace RefactorResume.Repositories
 
         public Skill GetSkillById(int id)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 string query = "SELECT * FROM skills WHERE ID = @id";
                 SqlCommand command = new SqlCommand(query, connection);
@@ -77,7 +73,7 @@ namespace RefactorResume.Repositories
 
         public void AddSkill(Skill skill)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 string query = "INSERT INTO skills (SectionID, SkillType, SkillName) VALUES (@sectionId, @skillType, @skillName)";
                 SqlCommand command = new SqlCommand(query, connection);
@@ -92,7 +88,7 @@ namespace RefactorResume.Repositories
 
         public void UpdateSkill(Skill skill)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 string query = "UPDATE skills SET SectionID = @sectionId, SkillType = @skillType, SkillName = @skillName WHERE ID = @id";
                 SqlCommand command = new SqlCommand(query, connection);
@@ -108,7 +104,7 @@ namespace RefactorResume.Repositories
 
         public void DeleteSkill(int id)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 string query = "DELETE FROM skills WHERE ID = @id";
                 SqlCommand command = new SqlCommand(query, connection);

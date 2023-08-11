@@ -23,7 +23,7 @@ namespace RefactorResume.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<WorkExperience> GetWorkExperienceById(int id) // Updated action
+        public ActionResult<WorkExperience> GetWorkExperienceById(int id) 
         {
             var workExperience = _workExperienceRepository.GetWorkExperienceById(id);
             if (workExperience == null)

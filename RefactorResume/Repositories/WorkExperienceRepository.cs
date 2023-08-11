@@ -7,15 +7,13 @@ namespace RefactorResume.Data
 {
     public class WorkExperienceRepository : BaseRepository, IWorkExperienceRepository
     {
-        private readonly string _connectionString;
-
         public WorkExperienceRepository(IConfiguration configuration) : base(configuration) { }
 
         public List<WorkExperience> GetAllWorkExperiences()
         {
             var workExperiences = new List<WorkExperience>();
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand("SELECT * FROM work_experience", connection))
@@ -41,7 +39,7 @@ namespace RefactorResume.Data
 
         public WorkExperience GetWorkExperienceById(int id)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand("SELECT * FROM work_experience WHERE ID = @ID", connection))
@@ -69,7 +67,7 @@ namespace RefactorResume.Data
 
         public void AddWorkExperience(WorkExperience workExperience)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(
@@ -87,7 +85,7 @@ namespace RefactorResume.Data
 
         public void UpdateWorkExperience(WorkExperience workExperience)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(
@@ -106,7 +104,7 @@ namespace RefactorResume.Data
 
         public void DeleteWorkExperience(int id)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = Connection)
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(

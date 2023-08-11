@@ -7,13 +7,11 @@ namespace RefactorResume.Data
 {
     public class ResumeRepository : BaseRepository, IResumeRepository
     {
-        private readonly string _connectionString;
-
         public ResumeRepository(IConfiguration configuration) : base(configuration) { }
 
         public Resume GetResume(int id)
         {
-            using SqlConnection connection = new SqlConnection(_connectionString);
+            using SqlConnection connection = Connection;
             connection.Open();
 
             using SqlCommand command = new SqlCommand("SELECT ID, UserID FROM resumes WHERE ID = @ID", connection);
@@ -38,7 +36,7 @@ namespace RefactorResume.Data
         {
             List<Resume> resumes = new List<Resume>();
 
-            using SqlConnection connection = new SqlConnection(_connectionString);
+            using SqlConnection connection = Connection;
             connection.Open();
 
             using SqlCommand command = new SqlCommand("SELECT ID, UserID FROM resumes", connection);
@@ -60,7 +58,7 @@ namespace RefactorResume.Data
 
         public void AddResume(Resume resume)
         {
-            using SqlConnection connection = new SqlConnection(_connectionString);
+            using SqlConnection connection = Connection;
             connection.Open();
 
             using SqlCommand command = new SqlCommand("INSERT INTO resumes (UserID) VALUES (@UserID); SELECT SCOPE_IDENTITY();", connection);
@@ -71,7 +69,7 @@ namespace RefactorResume.Data
 
         public void UpdateResume(Resume resume)
         {
-            using SqlConnection connection = new SqlConnection(_connectionString);
+            using SqlConnection connection = Connection;
             connection.Open();
 
             using SqlCommand command = new SqlCommand("UPDATE resumes SET UserID = @UserID WHERE ID = @ID", connection);
@@ -83,7 +81,7 @@ namespace RefactorResume.Data
 
         public void DeleteResume(int id)
         {
-            using SqlConnection connection = new SqlConnection(_connectionString);
+            using SqlConnection connection = Connection;
             connection.Open();
 
             using SqlCommand command = new SqlCommand("DELETE FROM resumes WHERE ID = @ID", connection);
