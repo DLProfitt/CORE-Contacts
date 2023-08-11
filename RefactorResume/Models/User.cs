@@ -19,4 +19,3 @@
 //    PRIMARY KEY CLUSTERED ([ID] ASC),
 //    UNIQUE NONCLUSTERED([Email] ASC)
 //);
-

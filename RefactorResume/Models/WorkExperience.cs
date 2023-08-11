@@ -41,4 +41,3 @@ namespace RefactorResume.Models
 //    PRIMARY KEY CLUSTERED ([ID] ASC),
 //    FOREIGN KEY([SectionID]) REFERENCES[dbo].[resume_sections]([ID])
 //);
-
