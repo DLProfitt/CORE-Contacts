@@ -1,19 +1,15 @@
 ﻿using RefactorResume.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using Microsoft.Data.SqlClient;
 
 namespace RefactorResume.Data
 {
-    public class CertificationRepository
+    public class CertificationRepository : BaseRepository, ICertificationRepository
     {
         private readonly string _connectionString;
 
-        public CertificationRepository(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
+        public CertificationRepository(IConfiguration configuration) : base(configuration) { }
 
         public List<Certification> GetAllCertifications()
         {

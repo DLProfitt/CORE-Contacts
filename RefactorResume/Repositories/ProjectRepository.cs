@@ -1,18 +1,16 @@
 ﻿using Microsoft.Data.SqlClient;
+using RefactorResume.Data;
 using RefactorResume.Models;
 using System;
 using System.Collections.Generic;
 
 namespace RefactorResume.Repositories
 {
-    public class ProjectRepository
+    public class ProjectRepository : BaseRepository, IProjectRepository
     {
         private readonly string _connectionString;
 
-        public ProjectRepository(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
+        public ProjectRepository(IConfiguration configuration) : base(configuration) { }
 
         public IEnumerable<Project> GetAllProjects()
         {

@@ -4,7 +4,7 @@ using System;
 
 namespace RefactorResume.Repositories
 {
-    public class ObjectiveRepository
+    public class ObjectiveRepository : IObjectiveRepository
     {
         private readonly string _connectionString;
 

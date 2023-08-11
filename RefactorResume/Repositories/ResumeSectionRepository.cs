@@ -5,14 +5,11 @@ using System.Collections.Generic;
 
 namespace RefactorResume.Data
 {
-    public class ResumeSectionRepository
+    public class ResumeSectionRepository : BaseRepository, IResumeSectionRepository
     {
         private readonly string _connectionString;
 
-        public ResumeSectionRepository(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
+        public ResumeSectionRepository(IConfiguration configuration) : base(configuration) { }
 
         public ResumeSection Get(int id)
         {

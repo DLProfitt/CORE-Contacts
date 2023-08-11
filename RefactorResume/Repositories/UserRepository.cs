@@ -5,14 +5,11 @@ using System.Collections.Generic;
 
 namespace RefactorResume.Data
 {
-    public class UserRepository
+    public class UserRepository : BaseRepository, IUserRepository
     {
         private readonly string _connectionString;
 
-        public UserRepository(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
+        public UserRepository(IConfiguration configuration) : base(configuration) { }
 
         public User GetUser(int id)
         {

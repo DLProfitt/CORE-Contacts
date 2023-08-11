@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace RefactorResume.Repositories
 {
-    public class ReferenceRepository
+    public class ReferenceRepository : IReferenceRepository
     {
         private readonly string _connectionString;
 

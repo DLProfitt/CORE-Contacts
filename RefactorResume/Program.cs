@@ -1,3 +1,5 @@
+using RefactorResume.Repositories;
+
 namespace RefactorResume
 {
     public class Program

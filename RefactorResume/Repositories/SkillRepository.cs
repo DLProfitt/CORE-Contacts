@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace RefactorResume.Repositories
 {
-    public class SkillRepository
+    public class SkillRepository : ISkillRepository
     {
         private readonly string _connectionString;
 

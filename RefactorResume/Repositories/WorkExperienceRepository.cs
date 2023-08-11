@@ -5,14 +5,11 @@ using System.Collections.Generic;
 
 namespace RefactorResume.Data
 {
-    public class WorkExperienceRepository
+    public class WorkExperienceRepository : BaseRepository, IWorkExperienceRepository
     {
         private readonly string _connectionString;
 
-        public WorkExperienceRepository(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
+        public WorkExperienceRepository(IConfiguration configuration) : base(configuration) { }
 
         public List<WorkExperience> GetAllWorkExperiences()
         {
