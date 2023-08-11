@@ -17,12 +17,11 @@ namespace RefactorResume.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<User> GetAllUsers() // New action
+        public IEnumerable<User> GetAllUsers() 
         {
             return _userRepository.GetAllUsers();
         }
 
-        // GET: api/Users/5
         [HttpGet("{id}")]
         public ActionResult<User> GetUser(int id)
         {
@@ -34,7 +33,6 @@ namespace RefactorResume.Controllers
             return Ok(user);
         }
 
-        // POST: api/Users
         [HttpPost]
         public ActionResult<User> AddUser(User user)
         {
@@ -42,7 +40,6 @@ namespace RefactorResume.Controllers
             return CreatedAtAction(nameof(GetUser), new { id = user.ID }, user);
         }
 
-        // PUT: api/Users/5
         [HttpPut("{id}")]
         public IActionResult UpdateUser(int id, User user)
         {
@@ -55,7 +52,6 @@ namespace RefactorResume.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Users/5
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {

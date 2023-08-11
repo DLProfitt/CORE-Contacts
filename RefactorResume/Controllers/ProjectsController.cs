@@ -16,14 +16,12 @@ namespace RefactorResume.Controllers
             _projectRepository = projectRepository;
         }
 
-        // GET: api/Projects
         [HttpGet]
         public ActionResult<IEnumerable<Project>> GetAllProjects()
         {
             return Ok(_projectRepository.GetAllProjects());
         }
 
-        // GET: api/Projects/5
         [HttpGet("{id}")]
         public ActionResult<Project> GetProjectById(int id)
         {
@@ -47,7 +45,6 @@ namespace RefactorResume.Controllers
             return Ok(selectedProject);
         }
 
-        // POST: api/Projects
         [HttpPost]
         public ActionResult<Project> AddProject(Project project)
         {
@@ -55,7 +52,6 @@ namespace RefactorResume.Controllers
             return CreatedAtAction(nameof(GetProjectById), new { id = project.ID }, project);
         }
 
-        // PUT: api/Projects/5
         [HttpPut("{id}")]
         public IActionResult UpdateProject(int id, Project project)
         {
@@ -68,7 +64,6 @@ namespace RefactorResume.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Projects/5
         [HttpDelete("{id}")]
         public IActionResult DeleteProject(int id)
         {

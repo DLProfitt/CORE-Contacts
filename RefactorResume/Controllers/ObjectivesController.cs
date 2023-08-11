@@ -16,7 +16,6 @@ namespace RefactorResume.Controllers
             _objectiveRepository = objectiveRepository;
         }
 
-        // GET: api/objectives/{id}
         [HttpGet("{id}")]
         public ActionResult<Objective> GetObjectiveById(int id)
         {
@@ -28,7 +27,6 @@ namespace RefactorResume.Controllers
             return objective;
         }
 
-        // POST: api/objectives
         [HttpPost]
         public ActionResult<Objective> AddObjective(Objective objective)
         {
@@ -36,7 +34,6 @@ namespace RefactorResume.Controllers
             return CreatedAtAction(nameof(GetObjectiveById), new { id = objective.ID }, objective);
         }
 
-        // PUT: api/objectives/{id}
         [HttpPut("{id}")]
         public IActionResult UpdateObjective(int id, Objective objective)
         {
@@ -49,7 +46,6 @@ namespace RefactorResume.Controllers
             return NoContent();
         }
 
-        // DELETE: api/objectives/{id}
         [HttpDelete("{id}")]
         public IActionResult DeleteObjective(int id)
         {
