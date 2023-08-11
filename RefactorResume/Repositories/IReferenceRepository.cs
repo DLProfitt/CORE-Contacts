@@ -5,7 +5,7 @@ namespace RefactorResume.Repositories
 {
     public interface IReferenceRepository
     {
-        List<Reference> GetAllReferences(); // New method
+        List<Reference> GetAllReferences();
         Reference GetReferenceById(int id);
         void AddReference(Reference reference);
         void UpdateReference(Reference reference);

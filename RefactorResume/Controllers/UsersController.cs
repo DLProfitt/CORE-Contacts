@@ -16,12 +16,16 @@ namespace RefactorResume.Controllers
             _userRepository = userRepository;
         }
 
-        // GET: api/Users
         [HttpGet]
-        public ActionResult<IEnumerable<User>> GetUsers()
+        public IEnumerable<User> GetAllUsers() // New action
         {
-            // Assuming you have a method to get all users in IUserRepository
-            return Ok(_userRepository.GetUsers());
+            return _userRepository.GetAllUsers();
+        }
+
+        [HttpGet]
+        public IEnumerable<User> GetUsers()
+        {
+            return _userRepository.GetUsers();
         }
 
         // GET: api/Users/5

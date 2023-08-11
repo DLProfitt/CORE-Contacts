@@ -39,7 +39,7 @@ namespace RefactorResume.Data
             return workExperiences;
         }
 
-        public WorkExperience GetWorkExperienceById(int id) // New method
+        public WorkExperience GetWorkExperienceById(int id)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {

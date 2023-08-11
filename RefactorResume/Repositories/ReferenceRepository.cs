@@ -14,7 +14,7 @@ namespace RefactorResume.Repositories
             _connectionString = connectionString;
         }
 
-        public List<Reference> GetAllReferences() // New method
+        public List<Reference> GetAllReferences()
         {
             List<Reference> references = new List<Reference>();
 

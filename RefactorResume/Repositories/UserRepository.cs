@@ -11,6 +11,33 @@ namespace RefactorResume.Data
 
         public UserRepository(IConfiguration configuration) : base(configuration) { }
 
+        public List<User> GetAllUsers()
+        {
+            var users = new List<User>();
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("SELECT * FROM users", connection))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        users.Add(new User
+                        {
+                            ID = reader.GetInt32(0),
+                            FirstName = reader.GetString(1),
+                            LastName = reader.GetString(2),
+                            Email = reader.GetString(3),
+                            Password = reader.GetString(4) 
+                        });
+                    }
+                }
+            }
+
+            return users;
+        }
+
         public User GetUser(int id)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
