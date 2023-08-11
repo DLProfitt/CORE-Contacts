@@ -11,6 +11,33 @@ namespace RefactorResume.Data
 
         public ResumeSectionRepository(IConfiguration configuration) : base(configuration) { }
 
+        public List<ResumeSection> GetAll()
+        {
+            List<ResumeSection> resumeSections = new List<ResumeSection>();
+            string query = "SELECT ID, ResumeID, SectionType FROM resume_sections";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        resumeSections.Add(new ResumeSection
+                        {
+                            ID = (int)reader["ID"],
+                            ResumeID = (int)reader["ResumeID"],
+                            SectionType = reader["SectionType"] as string
+                        });
+                    }
+                }
+            }
+
+            return resumeSections;
+        }
+
         public ResumeSection Get(int id)
         {
             ResumeSection resumeSection = null;

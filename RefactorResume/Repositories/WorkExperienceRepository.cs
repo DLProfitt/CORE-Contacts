@@ -39,6 +39,34 @@ namespace RefactorResume.Data
             return workExperiences;
         }
 
+        public WorkExperience GetWorkExperienceById(int id) // New method
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("SELECT * FROM work_experience WHERE ID = @ID", connection))
+                {
+                    command.Parameters.AddWithValue("@ID", id);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new WorkExperience
+                            {
+                                ID = reader.GetInt32(0),
+                                SectionID = reader.GetInt32(1),
+                                Company = reader.GetString(2),
+                                Role = reader.GetString(3),
+                                Location = reader.GetString(4),
+                                Summary = reader.GetString(5)
+                            };
+                        }
+                        return null;
+                    }
+                }
+            }
+        }
+
         public void AddWorkExperience(WorkExperience workExperience)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))

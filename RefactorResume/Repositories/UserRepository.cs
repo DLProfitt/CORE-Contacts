@@ -87,5 +87,10 @@ namespace RefactorResume.Data
                 }
             }
         }
+
+        public List<User> GetUsers()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

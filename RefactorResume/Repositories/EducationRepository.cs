@@ -41,6 +41,33 @@ namespace RefactorResume.Data
             return educations;
         }
 
+        public Education GetEducationById(int id) // Added method
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("SELECT * FROM education WHERE ID = @ID", connection))
+                {
+                    command.Parameters.AddWithValue("@ID", id);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Education
+                            {
+                                ID = reader.GetInt32(reader.GetOrdinal("ID")),
+                                SectionID = reader.GetInt32(reader.GetOrdinal("SectionID")),
+                                SchoolName = reader.GetString(reader.GetOrdinal("SchoolName")),
+                                DegreeReceived = reader.GetString(reader.GetOrdinal("DegreeReceived")),
+                                GraduationDate = reader.GetDateTime(reader.GetOrdinal("GraduationDate"))
+                            };
+                        }
+                        return null;
+                    }
+                }
+            }
+        }
+
         public void AddEducation(Education education)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))

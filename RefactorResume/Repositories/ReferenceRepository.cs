@@ -14,6 +14,38 @@ namespace RefactorResume.Repositories
             _connectionString = connectionString;
         }
 
+        public List<Reference> GetAllReferences() // New method
+        {
+            List<Reference> references = new List<Reference>();
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SELECT * FROM [references]", connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            references.Add(new Reference
+                            {
+                                ID = (int)reader["ID"],
+                                SectionID = (int)reader["SectionID"],
+                                ReferenceType = reader["ReferenceType"].ToString(),
+                                ReferenceName = reader["ReferenceName"].ToString(),
+                                ReferenceBusinessRole = reader["ReferenceBusinessRole"].ToString(),
+                                ReferencePhoneNumber = reader["ReferencePhoneNumber"].ToString(),
+                                ReferenceEmail = reader["ReferenceEmail"].ToString()
+                            });
+                        }
+                    }
+                }
+            }
+
+            return references;
+        }
+
         public Reference GetReferenceById(int id)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
