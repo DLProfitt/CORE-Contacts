@@ -10,6 +10,7 @@ import ErrorPage from "./error-page.js";
 import Contact, { loader as contactLoader } from "./routes/contact.js";
 import EditContact, { action as editAction } from "./routes/edit.js";
 import { action as destroyAction } from "./routes/destroy.js";
+import ContactBlog from "./routes/contactBlog.js";
 
 ////Router Config
 const router = createBrowserRouter([
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
         loader: rootLoader,
         action: rootAction,
         children: [
+            { index: true, element: <ContactBlog /> },
             {
                 path: "contacts/:contactId",
                 element: <Contact />,
