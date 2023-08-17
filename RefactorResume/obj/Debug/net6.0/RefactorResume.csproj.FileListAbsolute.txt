@@ -1,8 +1,5 @@
 C:\Users\user\source\repos\RefactorResume\RefactorResume\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\user\source\repos\RefactorResume\RefactorResume\bin\Debug\net6.0\appsettings.json
-C:\Users\user\source\repos\RefactorResume\RefactorResume\bin\Debug\net6.0\client\package-lock.json
-C:\Users\user\source\repos\RefactorResume\RefactorResume\bin\Debug\net6.0\client\package.json
-C:\Users\user\source\repos\RefactorResume\RefactorResume\bin\Debug\net6.0\client\public\manifest.json
 C:\Users\user\source\repos\RefactorResume\RefactorResume\bin\Debug\net6.0\RefactorResume.exe
 C:\Users\user\source\repos\RefactorResume\RefactorResume\bin\Debug\net6.0\RefactorResume.deps.json
 C:\Users\user\source\repos\RefactorResume\RefactorResume\bin\Debug\net6.0\RefactorResume.runtimeconfig.json
@@ -67,3 +64,5 @@ C:\Users\user\source\repos\RefactorResume\RefactorResume\obj\Debug\net6.0\refint
 C:\Users\user\source\repos\RefactorResume\RefactorResume\obj\Debug\net6.0\RefactorResume.pdb
 C:\Users\user\source\repos\RefactorResume\RefactorResume\obj\Debug\net6.0\RefactorResume.genruntimeconfig.cache
 C:\Users\user\source\repos\RefactorResume\RefactorResume\obj\Debug\net6.0\ref\RefactorResume.dll
+C:\Users\user\source\repos\RefactorResume\RefactorResume\bin\Debug\net6.0\client\build\asset-manifest.json
+C:\Users\user\source\repos\RefactorResume\RefactorResume\bin\Debug\net6.0\client\build\manifest.json
