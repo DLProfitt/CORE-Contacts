@@ -1,7 +1,7 @@
 ﻿/* eslint-disable no-restricted-globals */
 /* eslint-disable react/jsx-no-target-blank */
 ////Imports
-import { useEffect } from "react";
+import { useEffect, } from "react";
 import { Outlet, NavLink, useLoaderData, Form, useNavigation, useSubmit, } from "react-router-dom";
 import { getContacts, createContact, } from "../contacts";
 import { ScrollableComponent } from "../functionality/addFunction.js";
@@ -51,7 +51,10 @@ export default function Root() {
                             name="q"
                             defaultValue={q}
                             onChange={(event) => {
-                                submit(event.currentTarget.form);
+                                const isFirstSearch = q == null;
+                                submit(event.currentTarget.form, {
+                                    replace: !isFirstSearch,
+                                });
                             }}
                         />
                         <div id="search-spinner" aria-hidden hidden={!searching} />
@@ -152,7 +155,10 @@ export default function Root() {
                             name="q"
                             defaultValue={q}
                             onChange={(event) => {
-                                submit(event.currentTarget.form);
+                                const isFirstSearch = q == null;
+                                submit(event.currentTarget.form, {
+                                    replace: !isFirstSearch,
+                                });
                             }}
                       />
                         <div id="search-spinner" aria-hidden hidden={!searching} />

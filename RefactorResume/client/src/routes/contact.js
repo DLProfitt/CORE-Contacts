@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable jsx-a11y/alt-text */
 ////Imports
-import { Form, useLoaderData, useFetcher } from "react-router-dom";
+import { Form, useLoaderData, useFetcher, } from "react-router-dom";
 import { getContact, updateContact } from "../contacts.js";
 
 ////Action - Update Contact Favorite
@@ -85,7 +85,6 @@ function Favorite({ contact }) {
 
     return (
         <fetcher.Form method="post">
-            <Form method="post">
                 <button
                     name="favorite"
                     value={favorite ? "false" : "true"}
@@ -97,7 +96,6 @@ function Favorite({ contact }) {
                 >
                     {favorite ? "★" : "☆"}
                 </button>
-            </Form>
         </fetcher.Form>
     );
 }
