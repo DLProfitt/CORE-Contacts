@@ -1,8 +1,9 @@
 ﻿/* eslint-disable no-restricted-globals */
 /* eslint-disable react/jsx-no-target-blank */
 ////Imports
-import { Outlet, NavLink, useLoaderData, Form, useNavigation, } from "react-router-dom";
-import { getContacts, createContact, updateContact } from "../contacts";
+import { useEffect } from "react";
+import { Outlet, NavLink, useLoaderData, Form, useNavigation, useSubmit, } from "react-router-dom";
+import { getContacts, createContact, } from "../contacts";
 import { ScrollableComponent } from "../functionality/addFunction.js";
 
 ////Action - rootAction
@@ -12,15 +13,28 @@ export async function action() {
 }
 
 ////Loader - rootLoader
-export async function loader() {
-    const contacts = await getContacts();
-    return { contacts };
+export async function loader({ request }) {
+    const url = new URL(request.url);
+    const q = url.searchParams.get("q");
+    const contacts = await getContacts(q);
+    return { contacts, q };
 }
 
 ////Functional Component - Root
 export default function Root() {
-    const { contacts } = useLoaderData();
+    const { contacts, q } = useLoaderData();
     const navigation = useNavigation();
+    const submit = useSubmit();
+
+    const searching =
+        navigation.location &&
+        new URLSearchParams(navigation.location.search).has(
+            "q"
+        );
+
+    useEffect(() => {
+        document.getElementById("q").value = q;
+    }, [q]);
 
     return (
         <>
@@ -30,20 +44,18 @@ export default function Root() {
                     <Form id="search-form" role="search">
                         <input
                             id="q"
+                            className={searching ? "loading" : ""}
                             aria-label="Search contacts"
                             placeholder="Search"
                             type="search"
                             name="q"
+                            defaultValue={q}
+                            onChange={(event) => {
+                                submit(event.currentTarget.form);
+                            }}
                         />
-                        <div
-                            id="search-spinner"
-                            aria-hidden
-                            hidden={true}
-                        />
-                        <div
-                            className="sr-only"
-                            aria-live="polite"
-                        ></div>
+                        <div id="search-spinner" aria-hidden hidden={!searching} />
+                        <div className="sr-only" aria-live="polite"></div>
                     </Form>
                     <Form method="post">
                         <button type="submit">New</button>
@@ -112,26 +124,6 @@ export default function Root() {
                                                     <div id="contact-card-text">
                                                         <article>{contact.first} {contact.last}</article>
                                                         <article>{contact.twitter && (<a target="_blank" href={`https://twitter.com/${contact.twitter}`}>{contact.twitter}</a>)}</article>
-                                                        <article id="card-buttons">
-                                                        <Form action="edit">
-                                                            <button type="submit">Edit</button>
-                                                        </Form>
-                                                        <Form
-                                                            method="post"
-                                                            action="destroy"
-                                                            onSubmit={(event) => {
-                                                                if (
-                                                                    !confirm(
-                                                                        "Please confirm you want to delete this record."
-                                                                    )
-                                                                ) {
-                                                                    event.preventDefault();
-                                                                }
-                                                            }}
-                                                        >
-                                                            <button type="submit">Delete</button>
-                                                            </Form>
-                                                        </article>
                                                     </div>
                                                 </>
                                             </div>
@@ -150,23 +142,21 @@ export default function Root() {
                     )}
                 </nav>
                 <div>
-                    <Form id="right-search-form" role="search">
-                        <input
+                    <Form id="search-form" role="search">
+                      <input
                             id="q"
+                            className={searching ? "loading" : ""}
                             aria-label="Search contacts"
                             placeholder="Search"
                             type="search"
                             name="q"
-                        />
-                        <div
-                            id="search-spinner"
-                            aria-hidden
-                            hidden={true}
-                        />
-                        <div
-                            className="sr-only"
-                            aria-live="polite"
-                        ></div>
+                            defaultValue={q}
+                            onChange={(event) => {
+                                submit(event.currentTarget.form);
+                            }}
+                      />
+                        <div id="search-spinner" aria-hidden hidden={!searching} />
+                      <div className="sr-only" aria-live="polite"></div>
                     </Form>
                     <Form method="post">
                         <button type="submit">New</button>

@@ -7,7 +7,7 @@ import "./index.css";
 //UI, loaders, actions
 import Root, { loader as rootLoader, action as rootAction } from "./routes/root.js";
 import ErrorPage from "./error-page.js";
-import Contact, { loader as contactLoader } from "./routes/contact.js";
+import Contact, { loader as contactLoader, action as contactAction } from "./routes/contact.js";
 import EditContact, { action as editAction } from "./routes/edit.js";
 import { action as destroyAction } from "./routes/destroy.js";
 import ContactBlog from "./routes/contactBlog.js";
@@ -26,6 +26,7 @@ const router = createBrowserRouter([
                 path: "contacts/:contactId",
                 element: <Contact />,
                 loader: contactLoader,
+                action: contactAction,
                 errorElement: <div> Oopsies! There was an error.</div>,
             },
             {
