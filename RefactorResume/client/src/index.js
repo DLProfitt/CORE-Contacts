@@ -1,10 +1,12 @@
-////Imports
+////Imports___________________________________
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-//Styles
+//Styles______________________________________
 import "./index.css";
-//UI, loaders, actions
+//Contexts____________________________________
+import { AuthProvider } from "./contexts/AuthContext.js";
+//UI, loaders, actions________________________
 import Root, { loader as rootLoader, action as rootAction } from "./routes/root.js";
 import ErrorPage from "./error-page.js";
 import Contact, { loader as contactLoader, action as contactAction } from "./routes/contact.js";
@@ -12,7 +14,7 @@ import EditContact, { action as editAction } from "./routes/edit.js";
 import { action as destroyAction } from "./routes/destroy.js";
 import ContactBlog from "./routes/contactBlog.js";
 
-////Router Config
+////Router Config_____________________________
 const router = createBrowserRouter([
     {
         path: "/",
@@ -47,9 +49,11 @@ const router = createBrowserRouter([
     },
 ]);
 
-////Establishing Root
+////Establishing Root_________________________
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
-        <RouterProvider router={router} />
+        <AuthProvider>
+            <RouterProvider router={router} />
+        </AuthProvider>
     </React.StrictMode>
 );

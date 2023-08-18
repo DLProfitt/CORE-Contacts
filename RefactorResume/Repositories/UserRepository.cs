@@ -9,6 +9,35 @@ namespace RefactorResume.Data
     {
         public UserRepository(IConfiguration configuration) : base(configuration) { }
 
+        public User GetUserByEmail(string email)
+        {
+            using (SqlConnection connection = Connection)
+            {
+                connection.Open();
+                string query = "SELECT * FROM users WHERE Email = @Email";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Email", email);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new User
+                            {
+                                ID = reader.GetInt32(0),
+                                FirstName = reader.GetString(1),
+                                LastName = reader.GetString(2),
+                                Email = reader.GetString(3),
+                                Password = reader.GetString(4)
+                            };
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+
         public List<User> GetAllUsers()
         {
             var users = new List<User>();
