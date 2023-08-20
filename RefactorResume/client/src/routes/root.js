@@ -4,7 +4,9 @@
 import { useEffect, } from "react";
 import { Outlet, NavLink, useLoaderData, Form, useNavigation, useSubmit, } from "react-router-dom";
 import { getContacts, createContact, } from "../contacts";
-import { ScrollableComponent } from "../functionality/addFunction.js";
+import { ScrollableComponent } from "../utils/addFunction.js";
+import logo from "../assets/core-logo.png";
+import YourCore from "../assets/your-core.png";
 
 ////Action - rootAction
 export async function action() {
@@ -28,9 +30,7 @@ export default function Root() {
 
     const searching =
         navigation.location &&
-        new URLSearchParams(navigation.location.search).has(
-            "q"
-        );
+        new URLSearchParams(navigation.location.search).has("q");
 
     useEffect(() => {
         document.getElementById("q").value = q;
@@ -39,63 +39,78 @@ export default function Root() {
     return (
         <>
             <div id="sidebar">
-                <h1>Refactor(Resume)</h1>
-                <div>
-                    <Form id="search-form" role="search">
-                        <input
-                            id="q"
-                            className={searching ? "loading" : ""}
-                            aria-label="Search contacts"
-                            placeholder="Search"
-                            type="search"
-                            name="q"
-                            defaultValue={q}
-                            onChange={(event) => {
-                                const isFirstSearch = q == null;
-                                submit(event.currentTarget.form, {
-                                    replace: !isFirstSearch,
-                                });
-                            }}
-                        />
-                        <div id="search-spinner" aria-hidden hidden={!searching} />
-                        <div className="sr-only" aria-live="polite"></div>
-                    </Form>
-                    <Form method="post">
-                        <button type="submit">New</button>
-                    </Form>
+                <img src={logo} alt="logo" />
+                <h1></h1>
+                <div id="feature-list">
+                    <div className="feature-item">
+                        <h3>Connect</h3>
+                    </div>
+                    <div className="feature-item">
+                        <h3>Organize</h3>
+                    </div>
+                    <div className="feature-item">
+                        <h3>Reference</h3>
+                    </div>
+                    <div className="feature-item">
+                        <h3>Engage</h3>
+                    </div>
                 </div>
-                <nav>
-                    {contacts.length ? (
-                        <ul>
-                            {contacts.map((contact) => (
-                                <li key={contact.id}>
-                                    <NavLink to={`contacts/${contact.id}`}
-                                        className={({ isActive, isPending }) =>
-                                            isActive
-                                                ? "active"
-                                                : isPending
-                                                    ? "pending"
-                                                    : ""
-                                        }
-                                    >
-                                        {contact.first || contact.last ? (
-                                            <>
-                                                {contact.first} {contact.last}
-                                            </>
-                                        ) : (
-                                            <i>No Name</i>
-                                        )}{" "}
-                                        {contact.favorite && <span>★</span>}
-                                    </NavLink>
-                                </li>
-                            ))}
-                        </ul>
-                    ) : (
-                        <p>
-                            <i>No contacts</i>
-                        </p>
-                    )}
-                </nav>
+                {/*<div>*/}
+                {/*    <Form id="search-form" role="search">*/}
+                {/*        <input*/}
+                {/*            id="q"*/}
+                {/*            className={searching ? "loading" : ""}*/}
+                {/*            aria-label="Search contacts"*/}
+                {/*            placeholder="Search"*/}
+                {/*            type="search"*/}
+                {/*            name="q"*/}
+                {/*            defaultValue={q}*/}
+                {/*            onChange={(event) => {*/}
+                {/*                const isFirstSearch = q == null;*/}
+                {/*                submit(event.currentTarget.form, {*/}
+                {/*                    replace: !isFirstSearch,*/}
+                {/*                });*/}
+                {/*            }}*/}
+                {/*        />*/}
+                {/*        <div id="search-spinner" aria-hidden hidden={!searching} />*/}
+                {/*        <div className="sr-only" aria-live="polite"></div>*/}
+                {/*    </Form>*/}
+                {/*    <Form method="post">*/}
+                {/*        <button type="submit">New</button>*/}
+                {/*    </Form>*/}
+                {/*</div>*/}
+            {/*    <nav>*/}
+            {/*        {contacts.length ? (*/}
+            {/*            <ul>*/}
+            {/*                {contacts.map((contact) => (*/}
+            {/*                    <li key={contact.id}>*/}
+            {/*                        <NavLink to={`contacts/${contact.id}`}*/}
+            {/*                            className={({ isActive, isPending }) =>*/}
+            {/*                                isActive*/}
+            {/*                                    ? "active"*/}
+            {/*                                    : isPending*/}
+            {/*                                        ? "pending"*/}
+            {/*                                        : ""*/}
+            {/*                            }*/}
+            {/*                        >*/}
+            {/*                            {contact.first || contact.last ? (*/}
+            {/*                                <>*/}
+            {/*                                    {contact.first} {contact.last}*/}
+            {/*                                </>*/}
+            {/*                            ) : (*/}
+            {/*                                <i>No Name</i>*/}
+            {/*                            )}{" "}*/}
+            {/*                            {contact.favorite && <span>★</span>}*/}
+            {/*                        </NavLink>*/}
+            {/*                    </li>*/}
+            {/*                ))}*/}
+            {/*            </ul>*/}
+            {/*        ) : (*/}
+            {/*            <p>*/}
+            {/*                <i>No contacts</i>*/}
+            {/*            </p>*/}
+            {/*        )}*/}
+            {/*    </nav>*/}
             </div>
             <ScrollableComponent>
             <div id="detail" className={ navigation.state === "loading" ? "loading" : "" }>
@@ -103,7 +118,9 @@ export default function Root() {
                 </div>
             </ScrollableComponent>
             <div id="right-sidebar">
-                <h1>Contacts</h1>
+            <div id="right-sidebar-card">
+                    <img src={YourCore} alt="Your.CORE" />
+                </div>
                 <nav id="right-nav">
                     {contacts.length ? (
                         <ul>
@@ -168,7 +185,7 @@ export default function Root() {
                         <button type="submit">New</button>
                     </Form>
                 </div>
-            </div>
+                </div>
         </>
     );
 }

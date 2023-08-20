@@ -4,6 +4,8 @@ using RefactorResume.Models;
 using System.Collections.Generic;
 
 namespace RefactorResume.Controllers
+
+
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -32,6 +34,18 @@ namespace RefactorResume.Controllers
             }
             return Ok(user);
         }
+
+        [HttpPost("login")]
+        public ActionResult<User> Login(LoginRequest request)
+        {
+            var user = _userRepository.GetUserByEmail(request.Email);
+            if (user == null || user.Password != request.Password) 
+            {
+                return Unauthorized();
+            }
+            return Ok(user); 
+        }
+
 
         [HttpPost]
         public ActionResult<User> AddUser(User user)
