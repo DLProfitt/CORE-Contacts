@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ScrollableComponent } from "../utils/addFunction.js";
 import { LoginForm } from "./LoginForm.js";
 import "../index.css"
-//import { RegistrationForm } from "./RegistrationForm.js";
+import { RegistrationForm } from "./RegistrationForm.js";
 
 export default function AuthPage() {
     const [showLoginForm, setShowLoginForm] = useState(true);
@@ -14,14 +14,14 @@ export default function AuthPage() {
             </div>
             <ScrollableComponent>
                 <div id="detail">
-                    <LoginForm />
-                {/*    {showLoginForm ? <LoginForm /> : <RegistrationForm />}*/}
+                    {/*<LoginForm />*/}
+                    {showLoginForm ? <LoginForm /> : <RegistrationForm />}
                 </div>
             </ScrollableComponent>
             <div id="right-sidebar">
                 <h1>Login</h1>
                 <button onClick={() => setShowLoginForm(true)}>Login</button>
-            {/*    <button onClick={() => setShowLoginForm(false)}>Register</button>*/}
+                <button onClick={() => setShowLoginForm(false)}>Register</button>
             </div>
         </div>
     );

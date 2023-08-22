@@ -1,30 +1,35 @@
-import { Form, useNavigate, useLoaderData, redirect } from "react-router-dom";
-import { updateContact } from "../contacts.js";
+import { Form, useNavigate, redirect } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext.js";
+import { createContact } from "../contacts.js";
+import { getUser } from "../utils/users.js";
 
-export async function action({ request, params }) {
-    const formData = await request.formData();
-    const updates = Object.fromEntries(formData);
-    await updateContact(params.contactId, updates);
-    return redirect(`/contacts/${params.contactId}`);
+export async function action({ request }) {
+    const contactData = await request.formData();
+    const contact = {
+        userID: contactData.get('userId'),
+        firstName: contactData.get('firstName'),
+        lastName: contactData.get('lastName'),
+        email: contactData.get('email'),
+        twitterUsername: contactData.get('twitterUsername'),
+        note: contactData.get('note'),
+        imageUrl: contactData.get('imageUrl'),
+    };
+    await createContact(contact);
+    return redirect(`/`);
 }
 
-export default function EditContact() {
+export async function loader() {
+    const userData = await getUser(1);
+    console.log("User Data: " + userData);
+    return { userData };
+}
+
+export default function CreateContact() {
     const { userId } = useAuth();
-    const { contact } = useLoaderData();
     const navigate = useNavigate();
 
     return (
         <Form method="post" id="contact-form">
-            <p>
-                <input
-                    hidden
-                    aria-label="ID"
-                    type="number"
-                    name="id"
-                    defaultValue={contact.id}
-                />
-            </p>
             <p>
                 <input
                     hidden
@@ -41,14 +46,12 @@ export default function EditContact() {
                     aria-label="First name"
                     type="text"
                     name="firstName"
-                    defaultValue={contact.firstName}
                 />
                 <input
                     placeholder="Last"
                     aria-label="Last name"
                     type="text"
                     name="lastName"
-                    defaultValue={contact.lastName}
                 />
             </p>
             <label>
@@ -58,7 +61,6 @@ export default function EditContact() {
                     aria-label="email"
                     type="text"
                     name="email"
-                    defaultValue={contact.email}
                 />
             </label>
             <label>
@@ -67,24 +69,13 @@ export default function EditContact() {
                     type="text"
                     name="twitterUsername"
                     placeholder="@jack"
-                    defaultValue={contact.twitterUsername}
-                />
-            </label>
-            <label>
-                <span>Profile Image URL</span>
-                <input
-                    placeholder="https://example.com/avatar.jpg"
-                    aria-label="Profile Image URL"
-                    type="text"
-                    name="imageUrl"
-                    defaultValue={contact.imageUrl}
                 />
             </label>
             <label>
                 <span>Notes</span>
                 <textarea
+                    type="text"
                     name="note"
-                    defaultValue={contact.note}
                     rows={6}
                 />
             </label>

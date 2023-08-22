@@ -13,6 +13,7 @@ import Contact, { loader as contactLoader, action as contactAction } from "./rou
 import EditContact, { action as editAction } from "./routes/edit.js";
 import { action as destroyAction } from "./routes/destroy.js";
 import ContactBlog from "./routes/contactBlog.js";
+import CreateContact, { loader as createLoader, action as createAction } from "./routes/createContact.js";
 
 ////Router Config_____________________________
 const router = createBrowserRouter([
@@ -27,6 +28,12 @@ const router = createBrowserRouter([
                 errorElement: <ErrorPage />,
                 children: [
                     { index: true, element: <ContactBlog /> },
+                    {
+                        path: "contacts/create",
+                        element: <CreateContact />,
+                        loader: createLoader,
+                        action: createAction,
+                    },
                     {
                         path: "contacts/:contactId",
                         element: <Contact />,
