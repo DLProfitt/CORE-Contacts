@@ -135,15 +135,15 @@ export default function Root() {
                                                     : ""
                                         }
                                     >
-                                        {contact.first || contact.last ? (
+                                        {contact.firstName || contact.lastName ? (
                                             <div id="right-contact-card">
                                             <>
-                                                <div id="right-contact"><img key={contact.avatar} src={contact.avatar || null} /></div>
+                                                <div id="right-contact"><img key={contact.ImageUrl} src={contact.ImageUrl || null} /></div>
                                             </>
                                             <>                                                
                                                     <div id="contact-card-text">
-                                                        <article>{contact.first} {contact.last}</article>
-                                                        <article>{contact.twitter && (<a target="_blank" href={`https://twitter.com/${contact.twitter}`}>{contact.twitter}</a>)}</article>
+                                                        <article>{contact.firstName} {contact.lastName}</article>
+                                                        <article>{contact.twitterUsername && (<a target="_blank" href={`https://twitter.com/${contact.twitterUsername}`}>{contact.twitterUsername}</a>)}</article>
                                                     </div>
                                                 </>
                                             </div>
@@ -182,7 +182,17 @@ export default function Root() {
                       <div className="sr-only" aria-live="polite"></div>
                     </Form>
                     <Form method="post">
-                        <button type="submit">New</button>
+                        <NavLink to={`contacts/create`}
+                            className={({ isActive, isPending }) =>
+                                isActive
+                                    ? "active"
+                                    : isPending
+                                        ? "pending"
+                                        : ""
+                            }
+                        >
+                            <button type="submit">New</button>
+                        </NavLink>
                     </Form>
                 </div>
                 </div>

@@ -19,6 +19,7 @@ namespace RefactorResume
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddTransient<ICertificationRepository, CertificationRepository>();
+            builder.Services.AddTransient<IContactRepository, ContactRepository>();
             builder.Services.AddTransient<IEducationRepository, EducationRepository>();
             builder.Services.AddTransient<IObjectiveRepository, ObjectiveRepository>();
             builder.Services.AddTransient<IPersonalInformationRepository, PersonalInformationRepository>();
