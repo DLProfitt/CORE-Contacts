@@ -31,8 +31,8 @@ namespace RefactorResume.Data
                                 LastName = reader.GetString(3),
                                 Email = reader.IsDBNull(4) ? null : reader.GetString(4),
                                 TwitterUsername = reader.IsDBNull(5) ? null : reader.GetString(5),
-                                Note = reader.IsDBNull(6) ? null : reader.GetString(6),
-                                ImageUrl = reader.IsDBNull(7) ? null : reader.GetString(7)
+                                ImageUrl = reader.IsDBNull(6) ? null : reader.GetString(6),
+                                Note = reader.IsDBNull(7) ? null : reader.GetString(7)
                             });
                         }
                     }
@@ -54,7 +54,7 @@ namespace RefactorResume.Data
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.Read())
-                        { 
+                        {
                             return new Contact
                             {
                                 ID = reader.GetInt32(0),
@@ -63,8 +63,8 @@ namespace RefactorResume.Data
                                 LastName = reader.GetString(3),
                                 Email = reader.IsDBNull(4) ? null : reader.GetString(4),
                                 TwitterUsername = reader.IsDBNull(5) ? null : reader.GetString(5),
-                                Note = reader.IsDBNull(6) ? null : reader.GetString(6),
-                                ImageUrl = reader.IsDBNull(7) ? null : reader.GetString(7)
+                                ImageUrl = reader.IsDBNull(6) ? null : reader.GetString(6),
+                                Note = reader.IsDBNull(7) ? null : reader.GetString(7)
                             };
                         }
                     }
@@ -78,7 +78,7 @@ namespace RefactorResume.Data
             using (SqlConnection connection = Connection)
             {
                 connection.Open();
-                string query = "INSERT INTO contacts (UserID, FirstName, LastName, Email, TwitterUsername, Note, ImageUrl) VALUES (@UserID, @FirstName, @LastName, @Email, @TwitterUsername, @Note, @ImageUrl)";
+                string query = "INSERT INTO contacts (UserID, FirstName, LastName, Email, TwitterUsername, ImageUrl, Note) VALUES (@UserID, @FirstName, @LastName, @Email, @TwitterUsername, @ImageUrl, @Note)";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@UserID", (object)contact.UserID ?? DBNull.Value);
@@ -86,8 +86,8 @@ namespace RefactorResume.Data
                     command.Parameters.AddWithValue("@LastName", contact.LastName);
                     command.Parameters.AddWithValue("@Email", (object)contact.Email ?? DBNull.Value);
                     command.Parameters.AddWithValue("@TwitterUsername", (object)contact.TwitterUsername ?? DBNull.Value);
-                    command.Parameters.AddWithValue("@Note", (object)contact.Note ?? DBNull.Value);
                     command.Parameters.AddWithValue("@ImageUrl", (object)contact.ImageUrl ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@Note", (object)contact.Note ?? DBNull.Value);
                     contact.ID = command.ExecuteNonQuery();
                 }
             }
@@ -98,7 +98,7 @@ namespace RefactorResume.Data
             using (SqlConnection connection = Connection)
             {
                 connection.Open();
-                string query = "UPDATE contacts SET UserID = @UserID, FirstName = @FirstName, LastName = @LastName, Email = @Email, TwitterUsername = @TwitterUsername, Note = @Note, ImageUrl = @ImageUrl WHERE ID = @ID";
+                string query = "UPDATE contacts SET UserID = @UserID, FirstName = @FirstName, LastName = @LastName, Email = @Email, TwitterUsername = @TwitterUsername, ImageUrl = @ImageUrl, Note = @Note WHERE ID = @ID;";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@ID", contact.ID);
@@ -107,8 +107,9 @@ namespace RefactorResume.Data
                     command.Parameters.AddWithValue("@LastName", contact.LastName);
                     command.Parameters.AddWithValue("@Email", (object)contact.Email ?? DBNull.Value);
                     command.Parameters.AddWithValue("@TwitterUsername", (object)contact.TwitterUsername ?? DBNull.Value);
-                    command.Parameters.AddWithValue("@Note", (object)contact.Note ?? DBNull.Value);
                     command.Parameters.AddWithValue("@ImageUrl", (object)contact.ImageUrl ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@Note", (object)contact.Note ?? DBNull.Value);
+                    command.ExecuteNonQuery();
                 }
             }
         }
