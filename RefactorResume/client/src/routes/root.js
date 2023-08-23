@@ -79,46 +79,46 @@ export default function Root() {
                 {/*        <button type="submit">New</button>*/}
                 {/*    </Form>*/}
                 {/*</div>*/}
-            {/*    <nav>*/}
-            {/*        {contacts.length ? (*/}
-            {/*            <ul>*/}
-            {/*                {contacts.map((contact) => (*/}
-            {/*                    <li key={contact.id}>*/}
-            {/*                        <NavLink to={`contacts/${contact.id}`}*/}
-            {/*                            className={({ isActive, isPending }) =>*/}
-            {/*                                isActive*/}
-            {/*                                    ? "active"*/}
-            {/*                                    : isPending*/}
-            {/*                                        ? "pending"*/}
-            {/*                                        : ""*/}
-            {/*                            }*/}
-            {/*                        >*/}
-            {/*                            {contact.first || contact.last ? (*/}
-            {/*                                <>*/}
-            {/*                                    {contact.first} {contact.last}*/}
-            {/*                                </>*/}
-            {/*                            ) : (*/}
-            {/*                                <i>No Name</i>*/}
-            {/*                            )}{" "}*/}
-            {/*                            {contact.favorite && <span>★</span>}*/}
-            {/*                        </NavLink>*/}
-            {/*                    </li>*/}
-            {/*                ))}*/}
-            {/*            </ul>*/}
-            {/*        ) : (*/}
-            {/*            <p>*/}
-            {/*                <i>No contacts</i>*/}
-            {/*            </p>*/}
-            {/*        )}*/}
-            {/*    </nav>*/}
+                {/*    <nav>*/}
+                {/*        {contacts.length ? (*/}
+                {/*            <ul>*/}
+                {/*                {contacts.map((contact) => (*/}
+                {/*                    <li key={contact.id}>*/}
+                {/*                        <NavLink to={`contacts/${contact.id}`}*/}
+                {/*                            className={({ isActive, isPending }) =>*/}
+                {/*                                isActive*/}
+                {/*                                    ? "active"*/}
+                {/*                                    : isPending*/}
+                {/*                                        ? "pending"*/}
+                {/*                                        : ""*/}
+                {/*                            }*/}
+                {/*                        >*/}
+                {/*                            {contact.first || contact.last ? (*/}
+                {/*                                <>*/}
+                {/*                                    {contact.first} {contact.last}*/}
+                {/*                                </>*/}
+                {/*                            ) : (*/}
+                {/*                                <i>No Name</i>*/}
+                {/*                            )}{" "}*/}
+                {/*                            {contact.favorite && <span>★</span>}*/}
+                {/*                        </NavLink>*/}
+                {/*                    </li>*/}
+                {/*                ))}*/}
+                {/*            </ul>*/}
+                {/*        ) : (*/}
+                {/*            <p>*/}
+                {/*                <i>No contacts</i>*/}
+                {/*            </p>*/}
+                {/*        )}*/}
+                {/*    </nav>*/}
             </div>
             <ScrollableComponent>
-            <div id="detail" className={ navigation.state === "loading" ? "loading" : "" }>
-                <Outlet />
+                <div id="detail" className={navigation.state === "loading" ? "loading" : ""}>
+                    <Outlet />
                 </div>
             </ScrollableComponent>
             <div id="right-sidebar">
-            <div id="right-sidebar-card">
+                <div id="right-sidebar-card">
                     <img src={YourCore} alt="Your.CORE" />
                 </div>
                 <nav id="right-nav">
@@ -137,10 +137,10 @@ export default function Root() {
                                     >
                                         {contact.firstName || contact.lastName ? (
                                             <div id="right-contact-card">
-                                            <>
-                                                <div id="right-contact"><img key={contact.ImageUrl} src={contact.ImageUrl || null} /></div>
-                                            </>
-                                            <>                                                
+                                                <>
+                                                    <div id="right-contact"><img key={contact.imageUrl} src={contact.imageUrl || null} /></div>
+                                                </>
+                                                <>
                                                     <div id="contact-card-text">
                                                         <article>{contact.firstName} {contact.lastName}</article>
                                                         <article>{contact.twitterUsername && (<a target="_blank" href={`https://twitter.com/${contact.twitterUsername}`}>{contact.twitterUsername}</a>)}</article>
@@ -163,7 +163,7 @@ export default function Root() {
                 </nav>
                 <div>
                     <Form id="search-form" role="search">
-                      <input
+                        <input
                             id="q"
                             className={searching ? "loading" : ""}
                             aria-label="Search contacts"
@@ -177,9 +177,9 @@ export default function Root() {
                                     replace: !isFirstSearch,
                                 });
                             }}
-                      />
+                        />
                         <div id="search-spinner" aria-hidden hidden={!searching} />
-                      <div className="sr-only" aria-live="polite"></div>
+                        <div className="sr-only" aria-live="polite"></div>
                     </Form>
                     <Form method="post">
                         <NavLink to={`contacts/create`}
@@ -195,7 +195,7 @@ export default function Root() {
                         </NavLink>
                     </Form>
                 </div>
-                </div>
+            </div>
         </>
     );
 }

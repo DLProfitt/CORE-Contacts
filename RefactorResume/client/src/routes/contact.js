@@ -32,7 +32,7 @@ export default function Contact() {
     return (
         <>
             <div id="contact">
-                <div><img key={contact.ImageUrl} src={contact.ImageUrl || null} /></div>
+                <div><img key={contact.imageUrl} src={contact.imageUrl} /></div>
                 <div>
                     <h1>
                         {contact.firstName || contact.lastName ? (
@@ -45,16 +45,16 @@ export default function Contact() {
                         <Favorite contact={contact} />
                     </h1>
 
-                    {contact.twitterUsername && (
-                        <p>
+                    {contact.email && (<p>{contact.email}</p>)}
+
+                    {contact.twitterUsername &&
                             <a
                                 target="_blank"
                                 href={`https://twitter.com/${contact.twitterUsername}`}
                             >
                                 {contact.twitterUsername}
                             </a>
-                        </p>
-                    )}
+                    }
 
                     {contact.note && <p>{contact.note}</p>}
 

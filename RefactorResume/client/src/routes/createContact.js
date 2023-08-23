@@ -11,8 +11,8 @@ export async function action({ request }) {
         lastName: contactData.get('lastName'),
         email: contactData.get('email'),
         twitterUsername: contactData.get('twitterUsername'),
-        note: contactData.get('note'),
         imageUrl: contactData.get('imageUrl'),
+        note: contactData.get('note'),
     };
     await createContact(contact);
     return redirect(`/`);
@@ -69,6 +69,15 @@ export default function CreateContact() {
                     type="text"
                     name="twitterUsername"
                     placeholder="@jack"
+                />
+            </label>
+            <label>
+                <span>Profile Image URL</span>
+                <input
+                    placeholder="https://example.com/avatar.jpg"
+                    aria-label="Profile Image URL"
+                    type="text"
+                    name="imageUrl"
                 />
             </label>
             <label>

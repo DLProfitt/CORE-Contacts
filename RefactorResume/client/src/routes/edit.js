@@ -85,7 +85,7 @@ export default function EditContact() {
                 <textarea
                     name="note"
                     defaultValue={contact.note}
-                    rows={6}
+                    rows={7}
                 />
             </label>
             <p>
