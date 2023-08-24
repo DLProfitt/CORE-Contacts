@@ -15,7 +15,7 @@ export default function AuthPage() {
                     <img src={logo} alt="logo" />
                     <h1>Getting Started</h1>
                     <p>How to login:</p>
-                    <ul id="right-sidebar">
+                    <ul id="getting-started">
                         <li>
                             Email: alex.doe@example.com
                         </li>

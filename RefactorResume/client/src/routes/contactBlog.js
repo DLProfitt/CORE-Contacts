@@ -9,24 +9,6 @@ const ContactBlog = () => {
             <div class="container">
                 <h1 class="header">Introducing CORE.Contacts</h1>
                 <p>Experience clean and easy management of your contacts with CORE.Contacts. Designed to help you <strong>Connect</strong>, <strong>Organize</strong>, <strong>Reference</strong>, and <strong>Engage</strong> with your contacts effortlessly.</p>
-                <div class="features">
-                    <div class="feature-item">
-                        <h3>🔗 Connect</h3>
-                        <p>Build Your.CORE connections by adding new contacts.</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>✨ Organize</h3>
-                        <p>Keep your contacts neatly organized and at your fingertips with dynamic search.</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>📚 Reference</h3>
-                        <p>Quickly reference your contacts' details whenever you need them.</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>💬 Engage</h3>
-                        <p>Engage with contacts through seamless communication tools.</p>
-                    </div>
-                </div>
             </div>
             {/*<section>*/}
             {/*<h1>Unlocking Career Advancement: The Power of Cataloging Your Contacts</h1>*/}
@@ -74,8 +56,6 @@ const ContactBlog = () => {
             {/*<p>Cataloging your contacts isn't just a neat organizational trick; it's a powerful strategy to unlock career opportunities. From speeding up job applications to building a robust network that supports your professional growth, the advantages are clear.</p>*/}
             {/*<p>Start today by taking the time to organize your contacts, engage with them regularly, and watch as doors begin to open in your career journey.</p>*/}
             {/*</section>*/}
-
-            <hr></hr>
 
             <h2>Unveiling the Power of CORE.Contacts</h2>
             <p>Embark on a journey with CORE.Contacts, where managing connections becomes a seamless experience. Dive into our exclusive features:</p>

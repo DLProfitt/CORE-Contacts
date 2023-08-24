@@ -5,8 +5,8 @@ import { useEffect, } from "react";
 import { Outlet, NavLink, useLoaderData, Form, useNavigation, useSubmit, } from "react-router-dom";
 import { getContacts, createContact, } from "../contacts";
 import { ScrollableComponent } from "../utils/addFunction.js";
-import logo from "../assets/core-logo.png";
-import YourCore from "../assets/your-core.png";
+import logo from "../assets/COREContacts-Logo.png";
+import YourCore from "../assets/COREContacts-YourCORE.png";
 
 ////Action - rootAction
 export async function action() {
@@ -39,22 +39,33 @@ export default function Root() {
     return (
         <>
             <div id="sidebar">
+            <div id="sidebar-img">
                 <img src={logo} alt="logo" />
-                <h1></h1>
-                <div id="feature-list">
-                    <div className="feature-item">
-                        <h3>Connect</h3>
-                    </div>
-                    <div className="feature-item">
-                        <h3>Organize</h3>
-                    </div>
-                    <div className="feature-item">
-                        <h3>Reference</h3>
-                    </div>
-                    <div className="feature-item">
-                        <h3>Engage</h3>
-                    </div>
                 </div>
+                <div id="feature-list">
+                <ScrollableComponent id="scrollable-sidebar">
+                    <div class="container">
+                        <div class="features">
+                            <div class="feature-item">
+                                <h3>🔗 Connect</h3>
+                                <p>Build Your.CORE connections by adding new contacts.</p>
+                            </div>
+                            <div class="feature-item">
+                                <h3>✨ Organize</h3>
+                                <p>Keep your contacts neatly organized and at your fingertips with dynamic search.</p>
+                            </div>
+                            <div class="feature-item">
+                                <h3>📚 Reference</h3>
+                                <p>Quickly reference your contacts' details whenever you need them.</p>
+                            </div>
+                            <div class="feature-item">
+                                <h3>💬 Engage</h3>
+                                <p>Engage with contacts through seamless communication tools.</p>
+                            </div>
+                        </div>
+                     </div>
+                </ScrollableComponent>f
+                    </div>
                 {/*<div>*/}
                 {/*    <Form id="search-form" role="search">*/}
                 {/*        <input*/}
@@ -111,17 +122,18 @@ export default function Root() {
                 {/*            </p>*/}
                 {/*        )}*/}
                 {/*    </nav>*/}
-            </div>
-            <ScrollableComponent>
+                </div>
+
+            <ScrollableComponent id="scrollable">
                 <div id="detail" className={navigation.state === "loading" ? "loading" : ""}>
                     <Outlet />
                 </div>
             </ScrollableComponent>
             <div id="right-sidebar">
-                <div id="right-sidebar-card">
-                    <img src={YourCore} alt="Your.CORE" />
+            <div id="sidebar-img">
+                <img src={YourCore} alt="YourCORE" />
                 </div>
-                <nav id="right-nav">
+                <nav id="nav">
                     {contacts.length ? (
                         <ul>
                             {contacts.map((contact) => (
@@ -160,7 +172,7 @@ export default function Root() {
                             <i>No contacts</i>
                         </p>
                     )}
-                </nav>
+                    </nav>
                 <div>
                     <Form id="search-form" role="search">
                         <input
