@@ -1,5 +1,20 @@
+body {
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+    width: 100vw;
+    min-width: 100vw;
+    max-width: 100vw;
+}
+
 html {
     box-sizing: border-box;
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+    width: 100vw;
+    min-width: 100vw;
+    max-width: 100vw;
 }
 
 *,
@@ -29,6 +44,12 @@ body {
     margin: 0;
     line-height: 1.5;
     color: #121212;
+}
+
+.main-container {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
 }
 
 textarea,
@@ -571,7 +592,7 @@ button:hover {
     max-height: 100%;
 }
 
-#sidebar-img img{
+#sidebar-img img {
     margin: 0px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -586,6 +607,11 @@ button:hover {
     max-height: 100px;
     width: auto;
     height: auto;
+}
+
+#sidebar-img {
+    display: flex;
+    justify-content: center;
 }
 
 /*#right-sidebar-card {
@@ -680,3 +706,49 @@ button:hover {
         justify-content: flex-start;
         align-content: center;
     }
+
+.scrollable {
+    position: relative;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+    .scrollable::-webkit-scrollbar {
+        display: none;
+    }
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-align: center;
+    line-height: 20px;
+    display: none;
+}
+
+.scrollable.has-scroll .scroll-indicator {
+    display: block;
+}
+
+.subsection {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.top-border {
+    margin-top: 5px;
+    border-top: 1px solid #e3e3e3;
+}
+
+.dynamic-search {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+}

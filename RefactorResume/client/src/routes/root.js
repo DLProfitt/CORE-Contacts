@@ -38,34 +38,56 @@ export default function Root() {
 
     return (
         <>
-            <div id="sidebar">
+            <div id="sidebar" className="main-container">
             <div id="sidebar-img">
                 <img src={logo} alt="logo" />
                 </div>
-                <div id="feature-list">
                 <ScrollableComponent id="scrollable-sidebar">
+                <div id="feature-list">
                     <div class="container">
-                        <div class="features">
+                            <div class="features">
                             <div class="feature-item">
-                                <h3>🔗 Connect</h3>
-                                <p>Build Your.CORE connections by adding new contacts.</p>
+                                <h2>Getting Started</h2>
+                                    <h3>A Step-By-Step Guide</h3>
+                                <p><em>Picture your entire network organized, accessible, and interactive. That's what CORE Contacts makes possible. In this guide, we'll walk hand-in-hand through Creating, Viewing, Editing, and Deleting contacts. Let's dive in!</em></p>
                             </div>
-                            <div class="feature-item">
-                                <h3>✨ Organize</h3>
-                                <p>Keep your contacts neatly organized and at your fingertips with dynamic search.</p>
+                                    <div class="feature-item">
+                                    <h3>➕ Create Contact</h3>
+                                    <ol>
+                                        <li>Select the 'New' button, located at the base of the right sidebar.</li>
+                                        <li>Complete the form by filling in your contact's details.</li>
+                                        <li>Select 'Save' to add the contact or 'Cancel' to go back to the previous view.</li>
+                                        </ol>
                             </div>
-                            <div class="feature-item">
-                                <h3>📚 Reference</h3>
-                                <p>Quickly reference your contacts' details whenever you need them.</p>
+                                <div class="feature-item">
+                                    <h3>👓 View Contact</h3>
+                                    <ol>
+                                        <li>Click on a contact from the right sidebar to view contact details.</li>
+                                        <li>You may filter the contact list by typing the contact's name into the search bar.</li>
+                                        <li>Once a contact has been selected, their details become available in the middle section of the application.</li>
+                                    </ol>
                             </div>
-                            <div class="feature-item">
-                                <h3>💬 Engage</h3>
-                                <p>Engage with contacts through seamless communication tools.</p>
+                                <div class="feature-item">
+                                    <h3>✏️ Edit Contact</h3>
+                                    <ol>
+                                        <li>While viewing a contact's details, select 'Edit' to make changes.</li>
+                                        <li>After making updates, select 'Save' to keep the changes or 'Cancel' to dismiss the changes.</li>
+                                    </ol>
                             </div>
-                        </div>
+                                <div class="feature-item">
+                                    <h3>❌ Delete Contact</h3>
+                                    <ol>
+                                        <li>Also while viewing a contact's details, you may select 'Delete' to remove the contact.</li>
+                                        <li>Select 'OK' to verify removal, or 'Cancel' to retain the contact.</li>
+                                    </ol>
+                                </div>
+                                <div class="feature-item">
+                                <p><em><strong>Congratulations!</strong> You've mastered contact management with CORE Contacts. Now, <strong>click</strong> 'New' to build more connections, and open the doors to limitless opportunities with CORE Contacts.</em></p>
+                                </div>
+                            </div>
                      </div>
-                </ScrollableComponent>f
                     </div>
+                </ScrollableComponent>
                 {/*<div>*/}
                 {/*    <Form id="search-form" role="search">*/}
                 {/*        <input*/}

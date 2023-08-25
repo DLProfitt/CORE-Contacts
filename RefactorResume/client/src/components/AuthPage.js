@@ -9,7 +9,7 @@ export default function AuthPage() {
     const [showLoginForm, setShowLoginForm] = useState(true);
 
     return (
-        <div id="root">
+        <div id="root" className="main-container">
             <>
                 <div id="sidebar">
                     <img src={logo} alt="logo" />
