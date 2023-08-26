@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-no-target-blank */
 ////Imports
 import { useEffect, } from "react";
-import { Outlet, NavLink, useLoaderData, Form, useNavigation, useSubmit, } from "react-router-dom";
+import { Outlet, NavLink, useLoaderData, Form, useNavigation, useSubmit, useFetcher, } from "react-router-dom";
 import { getContacts, createContact, } from "../contacts";
 import { ScrollableComponent } from "../utils/addFunction.js";
 import logo from "../assets/COREContacts-Logo.png";
@@ -30,9 +30,12 @@ export default function Root() {
 
     const searching =
         navigation.location &&
-        new URLSearchParams(navigation.location.search).has("q");
+        new URLSearchParams(navigation.location.search).has(
+            "q"
+        );
 
     useEffect(() => {
+        console.log(q);
         document.getElementById("q").value = q;
     }, [q]);
 
@@ -158,7 +161,10 @@ export default function Root() {
                 <nav id="nav">
                     {contacts.length ? (
                         <ul>
-                            {contacts.map((contact) => (
+                            {contacts.filter(contact => {
+                                if (q == null) return true;
+                                return `${contact.firstName} ${contact.lastName}`.toLowerCase().includes(q.toLowerCase());
+                            }).map((contact) => (
                                 <li id="contact-card" key={contact.id}>
                                     <NavLink to={`contacts/${contact.id}`}
                                         className={({ isActive, isPending }) =>
@@ -199,12 +205,12 @@ export default function Root() {
                     <Form id="search-form" role="search">
                         <input
                             id="q"
-                            className={searching ? "loading" : ""}
                             aria-label="Search contacts"
                             placeholder="Search"
                             type="search"
                             name="q"
                             defaultValue={q}
+                            className={searching ? "loading" : ""}
                             onChange={(event) => {
                                 const isFirstSearch = q == null;
                                 submit(event.currentTarget.form, {
@@ -231,5 +237,26 @@ export default function Root() {
                 </div>
             </div>
         </>
+    );
+}
+
+function Favorite({ contact }) {
+    const fetcher = useFetcher();
+    let favorite = contact.favorite;
+
+    return (
+        <fetcher.Form method="post">
+            <button
+                name="favorite"
+                value={favorite ? "false" : "true"}
+                aria-label={
+                    favorite
+                        ? "Remove from favorites"
+                        : "Add to favorites"
+                }
+            >
+                {favorite ? "★" : "☆"}
+            </button>
+        </fetcher.Form>
     );
 }

@@ -26,12 +26,10 @@ export default function AuthPage() {
                     <button onClick={() => setShowLoginForm(true)}>Login</button>
                     <button onClick={() => setShowLoginForm(false)}>Register</button>
                 </div>
-                <ScrollableComponent>
                     <div id="detail">
                         {/*<LoginForm />*/}
                         {showLoginForm ? <LoginForm /> : <RegistrationForm />}
                     </div>
-                </ScrollableComponent>
                 <div id="right-sidebar">
                 </div>
             </>
