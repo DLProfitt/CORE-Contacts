@@ -742,6 +742,10 @@ button:hover {
     border-bottom: 1px solid #e3e3e3;
 }
 
+    .subsection ul {
+        list-style: none;
+    }
+
 .top-border {
     margin-top: 5px;
     border-top: 1px solid #e3e3e3;

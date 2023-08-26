@@ -162,38 +162,39 @@ export default function Root() {
                     {contacts.length ? (
                         <ul>
                             {contacts.filter(contact => {
-                                if (q == null) return true;
-                                return `${contact.firstName} ${contact.lastName}`.toLowerCase().includes(q.toLowerCase());
-                            }).map((contact) => (
-                                <li id="contact-card" key={contact.id}>
-                                    <NavLink to={`contacts/${contact.id}`}
-                                        className={({ isActive, isPending }) =>
-                                            isActive
-                                                ? "active"
-                                                : isPending
-                                                    ? "pending"
-                                                    : ""
-                                        }
-                                    >
-                                        {contact.firstName || contact.lastName ? (
-                                            <div id="right-contact-card">
-                                                <>
-                                                    <div id="right-contact"><img key={contact.imageUrl} src={contact.imageUrl || null} /></div>
-                                                </>
-                                                <>
-                                                    <div id="contact-card-text">
-                                                        <article>{contact.firstName} {contact.lastName}</article>
-                                                        <article>{contact.twitterUsername && (<a target="_blank" href={`https://twitter.com/${contact.twitterUsername}`}>{contact.twitterUsername}</a>)}</article>
-                                                    </div>
-                                                </>
-                                            </div>
-                                        ) : (
-                                            <i>No Name</i>
-                                        )}{" "}
-                                        {contact.favorite && <span>★</span>}
-                                    </NavLink>
-                                </li>
-                            ))}
+    if (q == null) return true;
+    return `${contact.firstName} ${contact.lastName}`.toLowerCase().includes(q.toLowerCase());
+}).map((contact) => (
+    <li id="contact-card" key={contact.id}>
+        <NavLink to={`contacts/${contact.id}`}
+            className={({ isActive, isPending }) =>
+                isActive
+                    ? "active"
+                    : isPending
+                        ? "pending"
+                        : ""
+            }
+        >
+            {contact.firstName || contact.lastName ? (
+                <div id="right-contact-card">
+                    <>
+                        <div id="right-contact"><img key={contact.imageUrl} src={contact.imageUrl || null} /></div>
+                    </>
+                    <>
+                        <div id="contact-card-text">
+                            <article>{contact.firstName} {contact.lastName}
+                                {contact.isFavorite && <span style={{ color: 'yellow' }}> ★</span>}
+                            </article>
+                            <article>{contact.twitterUsername && (<a target="_blank" href={`https://twitter.com/${contact.twitterUsername}`}>{contact.twitterUsername}</a>)}</article>
+                        </div>
+                    </>
+                </div>
+            ) : (
+                <i>No Name</i>
+            )}
+        </NavLink>
+    </li>
+))}
                         </ul>
                     ) : (
                         <p>
@@ -237,26 +238,5 @@ export default function Root() {
                 </div>
             </div>
         </>
-    );
-}
-
-function Favorite({ contact }) {
-    const fetcher = useFetcher();
-    let favorite = contact.favorite;
-
-    return (
-        <fetcher.Form method="post">
-            <button
-                name="favorite"
-                value={favorite ? "false" : "true"}
-                aria-label={
-                    favorite
-                        ? "Remove from favorites"
-                        : "Add to favorites"
-                }
-            >
-                {favorite ? "★" : "☆"}
-            </button>
-        </fetcher.Form>
     );
 }

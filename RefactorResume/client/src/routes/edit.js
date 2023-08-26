@@ -1,3 +1,4 @@
+﻿import React, { useState } from 'react';
 import { Form, useNavigate, useLoaderData, redirect } from "react-router-dom";
 import { updateContact } from "../contacts.js";
 import { useAuth } from "../contexts/AuthContext.js";
@@ -13,6 +14,28 @@ export default function EditContact() {
     const { userId } = useAuth();
     const { contact } = useLoaderData();
     const navigate = useNavigate();
+
+    // Local state for favorite status
+    const [isFavorite, setIsFavorite] = useState(contact.isFavorite);
+
+    // Function to handle Save
+    const handleSave = async () => {
+        const formElement = document.getElementById('contact-form');
+        const formData = new FormData(formElement);
+        const updates = Object.fromEntries(formData);
+
+        // Merge favorite status into updates
+        updates.isFavorite = isFavorite;
+
+        await updateContact(contact.id, updates);
+        navigate(`/contacts/${contact.id}`);
+    };
+
+    // Function to handle Cancel
+    const handleCancel = () => {
+        setIsFavorite(contact.isFavorite); // Reset to original state
+        navigate(-1);
+    }
 
     return (
         <Form method="post" id="contact-form">
@@ -88,11 +111,18 @@ export default function EditContact() {
                     rows={6}
                 />
             </label>
+            <label>
+                <span>Favorite</span>
+                <button
+                    type="button"
+                    onClick={() => setIsFavorite(!isFavorite)} // Toggle local state
+                >
+                    {isFavorite ? "★" : "☆"}
+                </button>
+            </label>
             <p>
-                <button type="submit">Save</button>
-                <button type="button" onClick={() => {
-                    navigate(-1);
-                }}>Cancel</button>
+                <button type="button" onClick={handleSave}>Save</button>
+                <button type="button" onClick={handleCancel}>Cancel</button>
             </p>
         </Form>
     );

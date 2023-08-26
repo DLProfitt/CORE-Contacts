@@ -1,19 +1,10 @@
-﻿/* eslint-disable no-restricted-globals */
+﻿/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/jsx-no-target-blank */
-/* eslint-disable jsx-a11y/alt-text */
-////Imports
-import { Form, useLoaderData, useFetcher, } from "react-router-dom";
-import { getContact, updateContact } from "../contacts.js";
+/* eslint-disable no-restricted-globals */
+// Imports
+import { Form, useLoaderData, } from "react-router-dom";
+import { getContact } from "../contacts.js";
 
-////Action - Update Contact Favorite
-export async function action({ request, params }) {
-    let formData = await request.formData();
-    return updateContact(params.contactId, {
-        favorite: formData.get("favorite") === "true",
-    });
-}
-
-////Loader - contactLoader
 export async function loader({ params }) {
     const contact = await getContact(params.contactId);
     if (!contact) {
@@ -25,7 +16,6 @@ export async function loader({ params }) {
     return { contact };
 }
 
-////Functional Component - Contact
 export default function Contact() {
     const { contact } = useLoaderData();
 
@@ -38,22 +28,22 @@ export default function Contact() {
                         {contact.firstName || contact.lastName ? (
                             <>
                                 {contact.firstName} {contact.lastName}
+                                {contact.isFavorite && <span style={{ color: 'yellow' }}> ★</span>}
                             </>
                         ) : (
                             <i>No Name</i>
-                        )}{" "}
-                        <Favorite contact={contact} />
+                        )}
                     </h1>
 
                     {contact.email && (<p>{contact.email}</p>)}
 
                     {contact.twitterUsername &&
-                            <a
-                                target="_blank"
-                                href={`https://twitter.com/${contact.twitterUsername}`}
-                            >
-                                {contact.twitterUsername}
-                            </a>
+                        <a
+                            target="_blank"
+                            href={`https://twitter.com/${contact.twitterUsername}`}
+                        >
+                            {contact.twitterUsername}
+                        </a>
                     }
 
                     {contact.note && <p>{contact.note}</p>}
@@ -81,31 +71,5 @@ export default function Contact() {
                 </div>
             </div>
         </>
-    );
-}
-
-////Functions
-function Favorite({ contact }) {
-    const fetcher = useFetcher();
-
-    let favorite = contact.favorite;
-    if (fetcher.formData) {
-        favorite = fetcher.formData.get("favorite") === "true";
-    }
-
-    return (
-        <fetcher.Form method="post">
-                <button
-                    name="favorite"
-                    value={favorite ? "false" : "true"}
-                    aria-label={
-                        favorite
-                            ? "Remove from favorites"
-                            : "Add to favorites"
-                    }
-                >
-                    {favorite ? "★" : "☆"}
-                </button>
-        </fetcher.Form>
     );
 }
