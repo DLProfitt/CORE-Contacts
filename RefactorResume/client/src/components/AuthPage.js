@@ -3,7 +3,7 @@ import { ScrollableComponent } from "../utils/addFunction.js";
 import { LoginForm } from "./LoginForm.js";
 import "../index.css"
 import { RegistrationForm } from "./RegistrationForm.js";
-import logo from "../assets/core-logo.png";
+import logo from "../assets/COREContacts-Logo.png";
 
 export default function AuthPage() {
     const [showLoginForm, setShowLoginForm] = useState(true);
@@ -12,26 +12,28 @@ export default function AuthPage() {
         <div id="root" className="main-container">
             <>
                 <div id="sidebar">
-                    <img src={logo} alt="logo" />
+                    <div id="sidebar-img">
+                        <img src={logo} alt="logo" />
+                    </div>
+                    <label id="login-instructions">
                     <h1>Getting Started</h1>
-                    <p>How to login:</p>
-                    <ul id="getting-started">
-                        <li>
-                            Email: alex.doe@example.com
-                        </li>
-                        <li>
-                            Password: password1
-                        </li>
-                    </ul>
-                    <button onClick={() => setShowLoginForm(true)}>Login</button>
-                    <button onClick={() => setShowLoginForm(false)}>Register</button>
+                        <span>How to login:</span>
+                        <ul id="getting-started">
+                            <li>
+                                Email: alex.doe@example.com
+                            </li>
+                            <li>
+                                Password: password1
+                            </li>
+                        </ul>
+                    </label>
+                    {/*<button onClick={() => setShowLoginForm(true)}>Login</button>*/}
+                    {/*<button onClick={() => setShowLoginForm(false)}>Register</button>*/}
                 </div>
                     <div id="detail">
-                        {/*<LoginForm />*/}
-                        {showLoginForm ? <LoginForm /> : <RegistrationForm />}
+                        <LoginForm />
+                        {/*{showLoginForm ? <LoginForm /> : <RegistrationForm />}*/}
                     </div>
-                <div id="right-sidebar">
-                </div>
             </>
         </div>
     );

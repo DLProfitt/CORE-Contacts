@@ -1,7 +1,7 @@
 ﻿/* eslint-disable no-restricted-globals */
 /* eslint-disable react/jsx-no-target-blank */
 ////Imports
-import { useEffect, } from "react";
+import { useEffect, useState, } from "react";
 import { Outlet, NavLink, useLoaderData, Form, useNavigation, useSubmit, useFetcher, } from "react-router-dom";
 import { getContacts, createContact, } from "../contacts";
 import { ScrollableComponent } from "../utils/addFunction.js";
@@ -27,6 +27,11 @@ export default function Root() {
     const { contacts, q } = useLoaderData();
     const navigation = useNavigation();
     const submit = useSubmit();
+    const [isVisible, setIsVisible] = useState(false);
+
+    const handleToggle = () => {
+        setIsVisible(!isVisible);
+    };
 
     const searching =
         navigation.location &&
@@ -43,52 +48,55 @@ export default function Root() {
         <>
             <div id="sidebar" className="main-container">
             <div id="sidebar-img">
-                <img src={logo} alt="logo" />
+                    <NavLink to={`/`}>
+                        <img src={logo} alt="logo" />
+                    </NavLink>
                 </div>
                 <ScrollableComponent id="scrollable-sidebar">
-                <div id="feature-list">
-                    <div class="container">
-                            <div class="features">
-                            <div class="feature-item">
+                    <div id="feature-list">
+                    <div className="container">
+                            <div  className="features">
+                            <div className="feature-item">
                                 <h2>Getting Started</h2>
                                     <h3>A Step-By-Step Guide</h3>
                                 <p><em>Picture your entire network organized, accessible, and interactive. That's what CORE Contacts makes possible. In this guide, we'll walk hand-in-hand through Creating, Viewing, Editing, and Deleting contacts. Let's dive in!</em></p>
                             </div>
-                                    <div class="feature-item">
-                                    <h3>➕ Create Contact</h3>
-                                    <ol>
-                                        <li>Select the 'New' button, located at the base of the right sidebar.</li>
-                                        <li>Complete the form by filling in your contact's details.</li>
-                                        <li>Select 'Save' to add the contact or 'Cancel' to go back to the previous view.</li>
+                        {isVisible && (
+                                    <><div className="feature-item">
+                                        <h3>➕ Create Contact</h3>
+                                        <ol>
+                                            <li>Select the 'New' button, located at the base of the right sidebar.</li>
+                                            <li>Complete the form by filling in your contact's details.</li>
+                                            <li>Select 'Save' to add the contact or 'Cancel' to go back to the previous view.</li>
                                         </ol>
+                                    </div><div className="feature-item">
+                                            <h3>👓 View Contact</h3>
+                                            <ol>
+                                                <li>Click on a contact from the right sidebar to view contact details.</li>
+                                                <li>You may filter the contact list by typing the contact's name into the search bar.</li>
+                                                <li>Once a contact has been selected, their details become available in the middle section of the application.</li>
+                                            </ol>
+                                        </div><div className="feature-item">
+                                            <h3>✏️ Edit Contact</h3>
+                                            <ol>
+                                                <li>While viewing a contact's details, select 'Edit' to make changes.</li>
+                                                <li>After making updates, select 'Save' to keep the changes or 'Cancel' to dismiss the changes.</li>
+                                            </ol>
+                                        </div><div className="feature-item">
+                                            <h3>🗑️ Delete Contact</h3>
+                                            <ol>
+                                                <li>Also while viewing a contact's details, you may select 'Delete' to remove the contact.</li>
+                                                <li>Select 'OK' to verify removal, or 'Cancel' to retain the contact.</li>
+                                            </ol>
+                                        </div><div className="feature-item">
+                                            <p><em><strong>Congratulations!</strong> You've mastered contact management with CORE Contacts. Now, <strong>click</strong> 'New' to build more connections, and open the doors to limitless opportunities with CORE Contacts.</em></p>
+                                        </div></>
+                        )}
+                        <button onClick={handleToggle}>
+                            {isVisible ? "Close Guide" : "Start Guide"}
+                        </button>
                             </div>
-                                <div class="feature-item">
-                                    <h3>👓 View Contact</h3>
-                                    <ol>
-                                        <li>Click on a contact from the right sidebar to view contact details.</li>
-                                        <li>You may filter the contact list by typing the contact's name into the search bar.</li>
-                                        <li>Once a contact has been selected, their details become available in the middle section of the application.</li>
-                                    </ol>
-                            </div>
-                                <div class="feature-item">
-                                    <h3>✏️ Edit Contact</h3>
-                                    <ol>
-                                        <li>While viewing a contact's details, select 'Edit' to make changes.</li>
-                                        <li>After making updates, select 'Save' to keep the changes or 'Cancel' to dismiss the changes.</li>
-                                    </ol>
-                            </div>
-                                <div class="feature-item">
-                                    <h3>❌ Delete Contact</h3>
-                                    <ol>
-                                        <li>Also while viewing a contact's details, you may select 'Delete' to remove the contact.</li>
-                                        <li>Select 'OK' to verify removal, or 'Cancel' to retain the contact.</li>
-                                    </ol>
-                                </div>
-                                <div class="feature-item">
-                                <p><em><strong>Congratulations!</strong> You've mastered contact management with CORE Contacts. Now, <strong>click</strong> 'New' to build more connections, and open the doors to limitless opportunities with CORE Contacts.</em></p>
-                                </div>
-                            </div>
-                     </div>
+                        </div>
                     </div>
                 </ScrollableComponent>
                 {/*<div>*/}
@@ -185,7 +193,7 @@ export default function Root() {
                             <article>{contact.firstName} {contact.lastName}
                                 {contact.isFavorite && <span style={{ color: 'yellow' }}> ★</span>}
                             </article>
-                            <article>{contact.twitterUsername && (<a target="_blank" href={`https://twitter.com/${contact.twitterUsername}`}>{contact.twitterUsername}</a>)}</article>
+                            <article>{contact.twitterUsername && (<a target="_blank" href={`https://twitter.com/${contact.twitterUsername}`}>{'@' + contact.twitterUsername}</a>)}</article>
                         </div>
                     </>
                 </div>

@@ -13,8 +13,9 @@ export function LoginForm() {
     };
 
     return (
-        <div id="detail">
-            <form id="contact-form" onSubmit={handleLogin}>
+        <div id="login-detail">
+            <section id="contact-form">
+            <form id="login-form" onSubmit={handleLogin}>
                 <label>
                 <span>Email</span>
                 <input
@@ -38,7 +39,8 @@ export function LoginForm() {
                     />
                 </label>
                 <button type="submit">Login</button>
-            </form>
+                </form>
+            </section>
         </div>
     );
 }

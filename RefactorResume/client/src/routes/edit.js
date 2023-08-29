@@ -57,8 +57,10 @@ export default function EditContact() {
                     defaultValue={userId}
                 />
             </p>
-            <p>
-                <span>Name</span>
+                <label id="name-fields">
+                    <span>Name</span>
+                    <formgroup className="name-fields">
+            <div className="name-fields">
                 <input
                     placeholder="First"
                     aria-label="First name"
@@ -72,8 +74,10 @@ export default function EditContact() {
                     type="text"
                     name="lastName"
                     defaultValue={contact.lastName}
-                />
-            </p>
+                        />
+            </div>
+                    </formgroup>
+                </label>
             <label>
                 <span>Email</span>
                 <input
@@ -94,7 +98,7 @@ export default function EditContact() {
                 />
             </label>
             <label>
-                <span>Profile Image URL</span>
+                <span>Profile Image</span>
                 <input
                     placeholder="https://example.com/avatar.jpg"
                     aria-label="Profile Image URL"
@@ -115,11 +119,11 @@ export default function EditContact() {
                 <span>Favorite</span>
                 <button
                     type="button"
-                    onClick={() => setIsFavorite(!isFavorite)} // Toggle local state
+                    onClick={() => setIsFavorite(!isFavorite)}
                 >
                     {isFavorite ? "★" : "☆"}
                 </button>
-            </label>
+                </label>
             <p>
                 <button type="button" onClick={handleSave}>Save</button>
                 <button type="button" onClick={handleCancel}>Cancel</button>

@@ -42,7 +42,7 @@ export default function Contact() {
                             target="_blank"
                             href={`https://twitter.com/${contact.twitterUsername}`}
                         >
-                            {contact.twitterUsername}
+                            {'@' + contact.twitterUsername}
                         </a>
                     }
 

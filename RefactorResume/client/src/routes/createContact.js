@@ -1,4 +1,4 @@
-import { Form, useNavigate, redirect } from "react-router-dom";
+﻿import { Form, useNavigate, redirect } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext.js";
 import { createContact } from "../contacts.js";
 import { getUser } from "../utils/users.js";
@@ -33,14 +33,24 @@ export default function CreateContact() {
             <p>
                 <input
                     hidden
+                    aria-label="ID"
+                    type="number"
+                    name="id"
+                />
+            </p>
+            <p>
+                <input
+                    hidden
                     aria-label="UserID"
                     type="number"
                     name="userId"
                     defaultValue={userId}
                 />
             </p>
-            <p>
-                <span>Name</span>
+                <label id="name-fields">
+                    <span>Name</span>
+                    <formgroup className="name-fields">
+            <div className="name-fields">
                 <input
                     placeholder="First"
                     aria-label="First name"
@@ -52,8 +62,10 @@ export default function CreateContact() {
                     aria-label="Last name"
                     type="text"
                     name="lastName"
-                />
-            </p>
+                        />
+            </div>
+                    </formgroup>
+                </label>
             <label>
                 <span>Email</span>
                 <input
@@ -72,7 +84,7 @@ export default function CreateContact() {
                 />
             </label>
             <label>
-                <span>Profile Image URL</span>
+                <span>Profile Image</span>
                 <input
                     placeholder="https://example.com/avatar.jpg"
                     aria-label="Profile Image URL"
@@ -83,7 +95,6 @@ export default function CreateContact() {
             <label>
                 <span>Notes</span>
                 <textarea
-                    type="text"
                     name="note"
                     rows={6}
                 />
