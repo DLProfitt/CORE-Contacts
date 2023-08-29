@@ -23,18 +23,39 @@ export async function createContact(contact) {
 }
 
 export async function updateContact(id, updates) {
-    const response = await fetch(`${baseUrl}/${id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updates),
-    });
+    try {
+        const response = await fetch(`${baseUrl}/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updates),
+        });
 
-    if (!response.ok) {
-        throw new Error(`Failed to update contact: ${response.statusText}`);
+        console.log("Sending updates:", JSON.stringify(updates, null, 2));
+
+        console.log('HTTP status:', response.status);
+
+        if (response.status === 204) {
+            console.log('Update successful but no content returned');
+            return null;
+        }
+
+        if (!response.ok) {
+            throw new Error(`Failed to update contact: ${response.statusText}`);
+        }
+
+        const jsonResponse = await response.json();
+        console.log('Update successful', jsonResponse);
+        return jsonResponse;
+    } catch (error) {
+        console.error('An error occurred:', error);
+        throw error;
     }
 }
+
+
+
 
 export async function deleteContact(id) {
     const response = await fetch(`${baseUrl}/${id}`, {

@@ -13,24 +13,34 @@ export function LoginForm() {
     };
 
     return (
-        <form id="search-form" role="search" onSubmit={handleLogin}>
-            <input
-                id="email"
-                className=""
-                aria-label="Email"
-                placeholder="Email"
-                type="email"
-                name="email"
-            />
-            <input
-                id="password"
-                className=""
-                aria-label="Password"
-                placeholder="Password"
-                type="password"
-                name="password"
-            />
-            <button type="submit">Login</button>
-        </form>
+        <div id="login-detail">
+            <section id="contact-form">
+            <form id="login-form" onSubmit={handleLogin}>
+                <label>
+                <span>Email</span>
+                <input
+                    id="email"
+                    className=""
+                    aria-label="Email"
+                    placeholder="  - email@example.com -"
+                    type="email"
+                    name="email"
+                    />
+                </label>
+                <label>
+                <span>Password</span>
+                <input
+                    id="password"
+                    className=""
+                    aria-label="Password"
+                    placeholder="  - examplePassword1! -"
+                    type="password"
+                    name="password"
+                    />
+                </label>
+                <button type="submit">Login</button>
+                </form>
+            </section>
+        </div>
     );
 }

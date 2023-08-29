@@ -32,7 +32,8 @@ namespace RefactorResume.Data
                                 Email = reader.IsDBNull(4) ? null : reader.GetString(4),
                                 TwitterUsername = reader.IsDBNull(5) ? null : reader.GetString(5),
                                 ImageUrl = reader.IsDBNull(6) ? null : reader.GetString(6),
-                                Note = reader.IsDBNull(7) ? null : reader.GetString(7)
+                                Note = reader.IsDBNull(7) ? null : reader.GetString(7),
+                                IsFavorite = reader.GetBoolean(8)
                             });
                         }
                     }
@@ -64,7 +65,8 @@ namespace RefactorResume.Data
                                 Email = reader.IsDBNull(4) ? null : reader.GetString(4),
                                 TwitterUsername = reader.IsDBNull(5) ? null : reader.GetString(5),
                                 ImageUrl = reader.IsDBNull(6) ? null : reader.GetString(6),
-                                Note = reader.IsDBNull(7) ? null : reader.GetString(7)
+                                Note = reader.IsDBNull(7) ? null : reader.GetString(7),
+                                IsFavorite = reader.GetBoolean(8)
                             };
                         }
                     }
@@ -78,7 +80,7 @@ namespace RefactorResume.Data
             using (SqlConnection connection = Connection)
             {
                 connection.Open();
-                string query = "INSERT INTO contacts (UserID, FirstName, LastName, Email, TwitterUsername, ImageUrl, Note) VALUES (@UserID, @FirstName, @LastName, @Email, @TwitterUsername, @ImageUrl, @Note)";
+                string query = "INSERT INTO contacts (UserID, FirstName, LastName, Email, TwitterUsername, ImageUrl, Note, IsFavorite) VALUES (@UserID, @FirstName, @LastName, @Email, @TwitterUsername, @ImageUrl, @Note, @IsFavorite)";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@UserID", (object)contact.UserID ?? DBNull.Value);
@@ -88,6 +90,7 @@ namespace RefactorResume.Data
                     command.Parameters.AddWithValue("@TwitterUsername", (object)contact.TwitterUsername ?? DBNull.Value);
                     command.Parameters.AddWithValue("@ImageUrl", (object)contact.ImageUrl ?? DBNull.Value);
                     command.Parameters.AddWithValue("@Note", (object)contact.Note ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@IsFavorite", contact.IsFavorite);
                     contact.ID = command.ExecuteNonQuery();
                 }
             }
@@ -98,7 +101,7 @@ namespace RefactorResume.Data
             using (SqlConnection connection = Connection)
             {
                 connection.Open();
-                string query = "UPDATE contacts SET UserID = @UserID, FirstName = @FirstName, LastName = @LastName, Email = @Email, TwitterUsername = @TwitterUsername, ImageUrl = @ImageUrl, Note = @Note WHERE ID = @ID;";
+                string query = "UPDATE contacts SET UserID = @UserID, FirstName = @FirstName, LastName = @LastName, Email = @Email, TwitterUsername = @TwitterUsername, ImageUrl = @ImageUrl, Note = @Note, IsFavorite = @IsFavorite WHERE ID = @ID;";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@ID", contact.ID);
@@ -109,7 +112,11 @@ namespace RefactorResume.Data
                     command.Parameters.AddWithValue("@TwitterUsername", (object)contact.TwitterUsername ?? DBNull.Value);
                     command.Parameters.AddWithValue("@ImageUrl", (object)contact.ImageUrl ?? DBNull.Value);
                     command.Parameters.AddWithValue("@Note", (object)contact.Note ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@IsFavorite", contact.IsFavorite);
                     command.ExecuteNonQuery();
+
+                    int affectedRows = command.ExecuteNonQuery();
+                    Console.WriteLine($"Rows affected: {affectedRows}");
                 }
             }
         }

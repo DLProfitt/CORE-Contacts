@@ -10,5 +10,6 @@
         public string? TwitterUsername { get; set; }
         public string? ImageUrl { get; set; }
         public string? Note { get; set; }
+        public bool IsFavorite { get; set; }
     }
 }
