@@ -50,6 +50,16 @@ CORE Contacts is a robust contact management application that streamlines your n
     dotnet run
     ```
 
+5. Navigate into the client directory:
+    ```bash
+    cd client
+    ```
+
+6. Run the frontend of the application:
+    ```bash
+    npm start
+    ```        
+
 ## Contributing :handshake:
 
 We welcome contributions from the community. Feel free to open an issue or create a pull request.
