@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\CORE-Contacts",
-    "\\CORE-Contacts\\Models"
+    "\\CORE-Contacts\\Models",
+    "\\CORE-Contacts\\obj",
+    "\\CORE-Contacts\\Repositories"
   ],
-  "SelectedNode": "\\COREContacts.sln",
+  "SelectedNode": "\\CORE-Contacts\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
