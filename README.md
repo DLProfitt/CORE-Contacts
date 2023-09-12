@@ -63,7 +63,3 @@ CORE Contacts is a robust contact management application that streamlines your n
 ## Contributing :handshake:
 
 We welcome contributions from the community. Feel free to open an issue or create a pull request.
-
-## License :scroll:
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
