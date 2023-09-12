@@ -1,4 +1,4 @@
-# CORE Contacts - README
+# README
 # CORE Contacts :busts_in_silhouette:
 
 ## Description :page_facing_up:
