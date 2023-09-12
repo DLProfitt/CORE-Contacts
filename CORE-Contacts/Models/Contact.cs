@@ -1,4 +1,4 @@
-﻿namespace RefactorResume.Models
+﻿namespace COREContacts.Models
 {
     public class Contact
     {

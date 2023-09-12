@@ -1,7 +1,7 @@
-﻿using RefactorResume.Models;
+﻿using COREContacts.Models;
 using System.Collections.Generic;
 
-namespace RefactorResume.Repositories
+namespace COREContacts.Repositories
 {
     public interface ISkillRepository
     {

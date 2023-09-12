@@ -1,4 +1,4 @@
-﻿USE RefactorResume;
+﻿USE COREContacts;
 
 INSERT INTO users (FirstName, LastName, Email, Password)
 VALUES ('John', 'Doe', 'john.doe@example.com', 'password1'),

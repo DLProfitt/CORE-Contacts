@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 
-namespace RefactorResume.Data
+namespace COREContacts.Data
 {
     public abstract class BaseRepository
     {

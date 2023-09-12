@@ -1,9 +1,9 @@
-﻿using RefactorResume.Models;
+﻿using COREContacts.Models;
 using System;
 using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
 
-namespace RefactorResume.Data
+namespace COREContacts.Data
 {
     public class CertificationRepository : BaseRepository, ICertificationRepository
     {

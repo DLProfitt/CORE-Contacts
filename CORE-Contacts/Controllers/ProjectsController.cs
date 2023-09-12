@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RefactorResume.Models;
-using RefactorResume.Repositories;
+using COREContacts.Models;
+using COREContacts.Repositories;
 using System.Collections.Generic;
 
-namespace RefactorResume.Controllers
+namespace COREContacts.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

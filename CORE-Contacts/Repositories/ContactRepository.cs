@@ -1,9 +1,9 @@
 ﻿using Microsoft.Data.SqlClient;
-using RefactorResume.Models;
+using COREContacts.Models;
 using System;
 using System.Collections.Generic;
 
-namespace RefactorResume.Data
+namespace COREContacts.Data
 {
     public class ContactRepository : BaseRepository, IContactRepository
     {

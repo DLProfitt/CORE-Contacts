@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RefactorResume.Data;
-using RefactorResume.Models;
+using COREContacts.Data;
+using COREContacts.Models;
 using System.Collections.Generic;
 
-namespace RefactorResume.Controllers
+namespace COREContacts.Controllers
 
 
 {

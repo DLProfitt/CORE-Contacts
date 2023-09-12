@@ -1,6 +1,6 @@
-﻿using RefactorResume.Models;
+﻿using COREContacts.Models;
 
-namespace RefactorResume.Data
+namespace COREContacts.Data
 {
     public interface IResumeSectionRepository
     {

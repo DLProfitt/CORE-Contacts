@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using RefactorResume.Data;
-using RefactorResume.Repositories;
-using RefactorResume.Models;
+using COREContacts.Data;
+using COREContacts.Repositories;
+using COREContacts.Models;
 
 
-namespace RefactorResume
+namespace COREContacts
 {
     public class Program
     {

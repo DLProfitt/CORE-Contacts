@@ -1,4 +1,4 @@
-﻿USE RefactorResume;
+﻿USE COREContacts;
 
 ALTER TABLE [dbo].[contacts]
 DROP CONSTRAINT [CHK_Email];

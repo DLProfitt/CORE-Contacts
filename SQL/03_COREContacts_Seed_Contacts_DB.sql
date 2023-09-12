@@ -1,4 +1,4 @@
-﻿USE RefactorResume;
+﻿USE COREContacts;
 
 IF NOT EXISTS (SELECT * FROM [dbo].[contacts] WHERE [Email] = 'elon.musk@example.com')
     INSERT INTO [dbo].[contacts] ([FirstName], [LastName], [Email], [TwitterUsername], [Note], [ImageUrl])

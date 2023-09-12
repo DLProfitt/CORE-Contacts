@@ -1,8 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
-using RefactorResume.Data;
-using RefactorResume.Models;
+using COREContacts.Data;
+using COREContacts.Models;
 
-namespace RefactorResume.Repositories
+namespace COREContacts.Repositories
 {
     public class ObjectiveRepository : BaseRepository, IObjectiveRepository
     {

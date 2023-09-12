@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "RefactorResume": {
+    "COREContacts": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

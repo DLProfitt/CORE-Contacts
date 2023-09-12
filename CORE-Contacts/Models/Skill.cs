@@ -1,9 +1,9 @@
-﻿using RefactorResume.Models;
+﻿using COREContacts.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static System.Collections.Specialized.BitVector32;
 
-namespace RefactorResume.Models
+namespace COREContacts.Models
 {
     public class Skill
     {

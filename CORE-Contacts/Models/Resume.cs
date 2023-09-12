@@ -1,8 +1,8 @@
-﻿using RefactorResume.Models;
+﻿using COREContacts.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RefactorResume.Models
+namespace COREContacts.Models
 {
     public class Resume
     {

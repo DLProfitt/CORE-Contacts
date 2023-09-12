@@ -1,10 +1,10 @@
 ﻿using Microsoft.Data.SqlClient;
-using RefactorResume.Data;
-using RefactorResume.Models;
+using COREContacts.Data;
+using COREContacts.Models;
 using System;
 using System.Collections.Generic;
 
-namespace RefactorResume.Repositories
+namespace COREContacts.Repositories
 {
     public class ReferenceRepository : BaseRepository, IReferenceRepository // Inherit from BaseRepository
     {

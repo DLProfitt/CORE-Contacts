@@ -1,7 +1,7 @@
-﻿using RefactorResume.Models;
+﻿using COREContacts.Models;
 using System.Collections.Generic;
 
-namespace RefactorResume.Data
+namespace COREContacts.Data
 {
     public interface IUserRepository
     {

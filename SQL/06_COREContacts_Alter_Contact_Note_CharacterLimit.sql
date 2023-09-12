@@ -1,4 +1,4 @@
-﻿USE [RefactorResume];
+﻿USE [COREContacts];
 
 IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.COLUMNS 
           WHERE TABLE_NAME = 'contacts' AND COLUMN_NAME = 'ImageUrl')

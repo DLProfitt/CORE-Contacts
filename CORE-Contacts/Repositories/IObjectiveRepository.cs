@@ -1,6 +1,6 @@
-﻿using RefactorResume.Models;
+﻿using COREContacts.Models;
 
-namespace RefactorResume.Repositories
+namespace COREContacts.Repositories
 {
     public interface IObjectiveRepository
     {
